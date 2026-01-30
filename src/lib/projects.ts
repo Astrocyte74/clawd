@@ -29,5 +29,25 @@ export const projects: Project[] = [
         label: '342 sq ft'
       }
     ]
+  },
+  {
+    id: 'astronomical-events',
+    title: 'Astronomical Events 2025',
+    description: 'Your guide to celestial events visible from Carstairs, Alberta. Features meteor showers, lunar eclipses, planetary conjunctions, and stargazing tips.',
+    category: 'ai-research',
+    categoryLabel: 'Astronomy',
+    categoryIcon: '🌌',
+    href: 'astronomical-events/',
+    date: 'Jan 30, 2026',
+    metadata: [
+      {
+        icon: 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z',
+        label: '8 major events'
+      },
+      {
+        icon: 'M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z',
+        label: 'Peak viewing times'
+      }
+    ]
   }
 ]
