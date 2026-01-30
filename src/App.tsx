@@ -5,6 +5,7 @@ import { NavSidebar, type NavItem } from './components/NavSidebar'
 import { ProjectsView } from './components/ProjectsView'
 import FlooringBasementPage from './pages/flooring-basement'
 import AstronomicalEventsPage from './pages/astronomical-events'
+import TofuRecipesPage from './pages/tofu-recipes'
 import { getStoredTheme, initializeColorMode, type ThemeKey, type ColorMode } from './lib/themes'
 
 function DashboardLayout({ activeNav, setActiveNav, currentTheme, setCurrentTheme, currentMode, setCurrentMode }: {
@@ -98,6 +99,7 @@ function App() {
         } />
         <Route path="/flooring-basement" element={<FlooringBasementPage />} />
         <Route path="/astronomical-events" element={<AstronomicalEventsPage />} />
+        <Route path="/tofu-recipes" element={<TofuRecipesPage />} />
       </Routes>
     </BrowserRouter>
   )

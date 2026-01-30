@@ -2,7 +2,7 @@ export interface Project {
   id: string
   title: string
   description: string
-  category: 'home-renovation' | 'ai-research'
+  category: 'home-renovation' | 'ai-research' | 'recipes'
   categoryLabel: string
   categoryIcon: string
   href: string
@@ -47,6 +47,26 @@ export const projects: Project[] = [
       {
         icon: 'M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z',
         label: 'Peak viewing times'
+      }
+    ]
+  },
+  {
+    id: 'tofu-recipes',
+    title: 'Creative Tofu Recipes',
+    description: 'Delicious, protein-packed plant-based recipes featuring crispy maple-Sriracha tofu, Korean BBQ bowls, coconut curry, and smoky BLT sandwiches.',
+    category: 'recipes',
+    categoryLabel: 'Cooking',
+    categoryIcon: '🥢',
+    href: 'tofu-recipes/',
+    date: 'Jan 30, 2026',
+    metadata: [
+      {
+        icon: '⏱️',
+        label: '20-40 mins each'
+      },
+      {
+        icon: '🌱',
+        label: '4 recipes'
       }
     ]
   }
