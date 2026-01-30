@@ -1,4 +1,5 @@
 import { ExternalLink } from "lucide-react"
+import { Link } from "react-router-dom"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./ui/card"
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
@@ -54,11 +55,19 @@ export function ProjectCard({ project, delay = "0s" }: ProjectCardProps) {
       <CardFooter className="flex items-center justify-between pt-3 border-t border-border/50">
         <span className="text-xs text-muted-foreground">{project.date}</span>
         <div className="flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
-          <Button size="icon-xs" variant="ghost" asChild className="rounded-md">
-            <a href={project.href} className="not-document">
-              <ExternalLink className="h-3 w-3" />
-            </a>
-          </Button>
+          {project.href.startsWith('http') ? (
+            <Button size="icon-xs" variant="ghost" asChild className="rounded-md">
+              <a href={project.href} target="_blank" rel="noopener noreferrer" className="not-document">
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            </Button>
+          ) : (
+            <Button size="icon-xs" variant="ghost" asChild className="rounded-md">
+              <Link to={project.href}>
+                <ExternalLink className="h-3 w-3" />
+              </Link>
+            </Button>
+          )}
         </div>
       </CardFooter>
     </Card>
