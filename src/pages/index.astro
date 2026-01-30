@@ -1,0 +1,216 @@
+---
+// index.astro - Main landing page
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Footer from '../components/Footer.astro';
+
+// Project data - you can easily add more projects here
+const homeRenovationProjects = [
+  {
+    title: 'Basement Flooring Plan',
+    description: 'Complete flooring specification and material calculation for a 311 sq ft multi-purpose basement room featuring Tennessee Bluegrass LVP with acoustic backing.',
+    category: 'Flooring',
+    categoryIcon: '🏠',
+    href: '/flooring-basement/',
+    date: 'Jan 30, 2026',
+    metadata: [
+      {
+        icon: 'M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4',
+        label: '342 sq ft'
+      }
+    ]
+  }
+];
+
+const aiResearchProjects: any[] = [
+  // Add AI research projects here
+];
+---
+
+<Layout title="Clawdbot Projects Hub">
+  <Header />
+
+  <main class="flex-1">
+    <Hero />
+
+    <!-- Home & Renovation Section -->
+    <section id="home-renovation" class="py-16 sm:py-24">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section header -->
+        <div class="text-center mb-12 sm:mb-16">
+          <div class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary ring-1 ring-inset ring-primary/20 mb-4">
+            <span>🏠</span>
+            <span>Home Improvement</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+            Home & Renovation
+          </h2>
+          <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Detailed plans for home improvement projects
+          </p>
+        </div>
+
+        <!-- Projects grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {
+            homeRenovationProjects.length > 0 ? (
+              homeRenovationProjects.map((project, index) => (
+                <ProjectCard
+                  title={project.title}
+                  description={project.description}
+                  category={project.category}
+                  categoryIcon={project.categoryIcon}
+                  href={project.href}
+                  date={project.date}
+                  metadata={project.metadata}
+                  delay={(index * 0.1).toFixed(1)}
+                />
+              ))
+            ) : (
+              <div class="col-span-full">
+                <div class="flex flex-col items-center justify-center py-16 px-4 rounded-2xl border-2 border-dashed border-border/50 text-center">
+                  <div class="text-6xl mb-4 opacity-50">🔨</div>
+                  <p class="text-lg text-muted-foreground">
+                    No home renovation projects yet. Check back soon!
+                  </p>
+                </div>
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- AI & Research Section -->
+    <section id="ai-research" class="py-16 sm:py-24 bg-muted/30">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section header -->
+        <div class="text-center mb-12 sm:mb-16">
+          <div class="inline-flex items-center gap-2 rounded-full bg-purple-500/10 px-4 py-2 text-sm font-semibold text-purple-500 ring-1 ring-inset ring-purple-500/20 mb-4">
+            <span>🤖</span>
+            <span>Artificial Intelligence</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+            AI & Research
+          </h2>
+          <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+            News reports and research analysis
+          </p>
+        </div>
+
+        <!-- Projects grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {
+            aiResearchProjects.length > 0 ? (
+              aiResearchProjects.map((project, index) => (
+                <ProjectCard
+                  title={project.title}
+                  description={project.description}
+                  category={project.category}
+                  categoryIcon={project.categoryIcon}
+                  href={project.href}
+                  date={project.date}
+                  metadata={project.metadata}
+                  delay={(index * 0.1).toFixed(1)}
+                />
+              ))
+            ) : (
+              <div class="col-span-full">
+                <div class="flex flex-col items-center justify-center py-16 px-4 rounded-2xl border-2 border-dashed border-border/50 text-center">
+                  <div class="text-6xl mb-4 opacity-50">🤖</div>
+                  <p class="text-lg text-muted-foreground">
+                    No AI research projects yet. Check back soon!
+                  </p>
+                </div>
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 sm:py-24">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative overflow-hidden rounded-3xl border border-border/50 bg-gradient-to-br from-primary/10 via-purple-500/10 to-pink-500/10 p-8 sm:p-12 text-center">
+          <!-- Background decorations -->
+          <div class="absolute inset-0 bg-grid-slate-900/[0.04] bg-[bottom_1px_center] dark:bg-grid-slate-400/[0.05]"></div>
+          <div class="absolute -top-40 -right-40 h-96 w-96">
+            <div class="h-full w-full rounded-full bg-gradient-to-br from-primary/20 to-purple-500/20 blur-3xl dark:from-primary/10 dark:to-purple-500/10"></div>
+          </div>
+          <div class="absolute -bottom-40 -left-40 h-96 w-96">
+            <div class="h-full w-full rounded-full bg-gradient-to-tr from-pink-500/20 to-orange-500/20 blur-3xl dark:from-pink-500/10 dark:to-orange-500/10"></div>
+          </div>
+
+          <!-- Content -->
+          <div class="relative">
+            <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+              Want to create your own reports?
+            </h3>
+            <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+              Clawdbot AI can help you generate detailed project plans, research reports, and documentation.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/30"
+              >
+                <svg
+                  class="h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                  />
+                </svg>
+                <span>View on GitHub</span>
+              </a>
+              <a
+                href="#home-renovation"
+                class="inline-flex items-center justify-center gap-2 rounded-xl bg-secondary px-6 py-3 text-sm font-semibold text-secondary-foreground transition-all duration-300 hover:scale-105 hover:bg-secondary/80"
+              >
+                <span>Browse Projects</span>
+                <svg
+                  class="h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Grid pattern for CTA section */
+  .bg-grid-slate-900\/\[0\.04\] {
+    background-image: linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  }
+
+  .dark .bg-grid-slate-400\/\[0\.05\] {
+    background-image: linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+  }
+</style>
