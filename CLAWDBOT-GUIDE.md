@@ -2,6 +2,53 @@
 
 This guide explains how to create new pages, projects, and reports in the Clawd Hub React SPA.
 
+## ⚠️ CRITICAL: Working Directory
+
+**IMPORTANT: Always work from the clawd-hub project directory:**
+
+```bash
+# Correct working directory:
+/Users/markdarby16/clawd/projects/clawd-hub/
+
+# WRONG (parent directory - this causes git errors):
+/Users/markdarby16/clawd/
+```
+
+**First command when starting work:**
+```bash
+cd /Users/markdarby16/clawd/projects/clawd-hub/
+```
+
+**Verify you're in the right place:**
+```bash
+pwd  # Should output: /Users/markdarby16/clawd/projects/clawd-hub
+git status  # Should show clawd-hub repo status, NOT parent repo
+ls  # Should show: src/, public/, node_modules/, package.json, etc.
+```
+
+## Git Workflow
+
+**IMPORTANT: All git commands must be run from the clawd-hub directory:**
+
+```bash
+# 1. Navigate to project directory first
+cd /Users/markdarby16/clawd/projects/clawd-hub/
+
+# 2. Check status (ensure you see clawd-hub files, not parent)
+git status
+
+# 3. Add changes
+git add -A
+
+# 4. Commit
+git commit -m "feat: add new page"
+
+# 5. Push (this triggers GitHub Actions deployment)
+git push origin main
+```
+
+**Error to avoid:** If you see warnings about "embedded git repository" or "submodule", you're in the wrong directory. Go back to step 1.
+
 ## Project Structure
 
 ```
@@ -222,16 +269,29 @@ import { Link } from "react-router-dom"
 
 ## Build and Deploy
 
+**ALWAYS start from the clawd-hub directory:**
+
 ```bash
-# Build
+# 1. Navigate to project directory
+cd /Users/markdarby16/clawd/projects/clawd-hub/
+
+# 2. Build (verifies code compiles)
 npm run build
 
-# Preview locally
+# 3. Preview locally (optional)
 npm run preview
 
-# Deploy (git push triggers GitHub Actions)
+# 4. Deploy (git push triggers GitHub Actions)
+git add -A
+git commit -m "feat: your message here"
 git push origin main
 ```
+
+**If git commands fail with "embedded git repository" errors:**
+1. You are in the wrong directory (probably `/Users/markdarby16/clawd/`)
+2. Run: `cd /Users/markdarby16/clawd/projects/clawd-hub/`
+3. Run: `git status` to verify
+4. Try again
 
 ## GitHub Pages Configuration
 
