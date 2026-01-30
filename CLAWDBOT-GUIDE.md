@@ -2,6 +2,19 @@
 
 This guide explains how to create new pages, projects, and reports in the Clawd Hub React SPA.
 
+## 🚀 Quick Start Checklist
+
+**Before doing anything:**
+- [ ] `cd /Users/markdarby16/clawd/projects/clawd-hub/`
+- [ ] `pwd` (verify: `/Users/markdarby16/clawd/projects/clawd-hub`)
+- [ ] `git status` (verify: clawd-hub repo files shown)
+
+**Make changes:**
+- [ ] Edit/create files
+- [ ] `git add -A`
+- [ ] `git commit -m "feat: description"`
+- [ ] `git push origin main`
+
 ## ⚠️ CRITICAL: Working Directory
 
 **IMPORTANT: Always work from the clawd-hub project directory:**
@@ -48,6 +61,34 @@ git push origin main
 ```
 
 **Error to avoid:** If you see warnings about "embedded git repository" or "submodule", you're in the wrong directory. Go back to step 1.
+
+## 🔧 Troubleshooting
+
+| Error Message | Cause | Solution |
+|---------------|-------|----------|
+| `warning: adding embedded git repository` | You're in the parent directory (`/Users/markdarby16/clawd/`) | Run `cd /Users/markdarby16/clawd/projects/clawd-hub/` then try again |
+| `fatal: not a git repository` | You're not in a git directory | Run `cd /Users/markdarby16/clawd/projects/clawd-hub/` |
+| `command not found: npm` | Not in the project directory | Run `cd /Users/markdarby16/clawd/projects/clawd-hub/` |
+| `does not have a commit checked out` | Nested git repo inside clawd-hub | Remove the nested repo or add it as a submodule |
+
+**Quick fix for most issues:**
+```bash
+cd /Users/markdarby16/clawd/projects/clawd-hub/
+pwd  # Verify: /Users/markdarby16/clawd/projects/clawd-hub
+git status  # Verify: Shows clawd-hub files
+```
+
+## 💡 Convenience Alias
+
+Add this to your `~/.zshrc` for quick navigation:
+
+```bash
+# Add to ~/.zshrc
+alias clawd-hub='cd /Users/markdarby16/clawd/projects/clawd-hub/'
+
+# Then use it anytime:
+clawd-hub
+```
 
 ## Project Structure
 
