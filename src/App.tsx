@@ -29,7 +29,7 @@ function App() {
   }, [])
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/clawd">
       <div className="h-screen flex flex-col bg-background">
         {/* Animated background mesh */}
         <div className="fixed inset-0 -z-10 opacity-10 pointer-events-none mesh-gradient"></div>
