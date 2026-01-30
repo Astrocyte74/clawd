@@ -69,5 +69,25 @@ export const projects: Project[] = [
         label: '4 recipes'
       }
     ]
+  },
+  {
+    id: 'ai-news-jan2026',
+    title: 'AI News & Updates - January 2026',
+    description: 'Latest developments in LLMs: Moonshot K2.5 (1T params), DeepSeek R1 (cost revolution), Arcee Trinity (400B), and market leaders Claude Opus 4.5, Gemini 3 Pro, and GPT-5.2.',
+    category: 'ai-research',
+    categoryLabel: 'AI Research',
+    categoryIcon: '🤖',
+    href: 'ai-news-jan2026/',
+    date: 'Jan 30, 2026',
+    metadata: [
+      {
+        icon: '📰',
+        label: '6 major stories'
+      },
+      {
+        icon: '🌍',
+        label: 'Global coverage'
+      }
+    ]
   }
 ]
