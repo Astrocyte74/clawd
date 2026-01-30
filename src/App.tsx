@@ -2,13 +2,26 @@ import { useState, useEffect } from 'react'
 import { Header } from './components/Header'
 import { NavSidebar, type NavItem } from './components/NavSidebar'
 import { ProjectsView } from './components/ProjectsView'
-import { getStoredTheme, type ThemeKey } from './lib/themes'
+import { getStoredTheme, initializeColorMode, type ThemeKey, type ColorMode } from './lib/themes'
 
 function App() {
   const [activeNav, setActiveNav] = useState<NavItem>('projects')
   const [currentTheme, setCurrentTheme] = useState<ThemeKey>(() => getStoredTheme())
+  const [currentMode, setCurrentMode] = useState<ColorMode>(() => {
+    // Initialize from localStorage or system preference
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('clawd:colorMode')
+      if (stored === 'light' || stored === 'dark') return stored
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    }
+    return 'dark'
+  })
 
   useEffect(() => {
+    // Initialize color mode on mount
+    initializeColorMode()
+
+    // Get initial theme
     const theme = getStoredTheme()
     setCurrentTheme(theme)
   }, [])
@@ -22,6 +35,8 @@ function App() {
       <Header
         currentTheme={currentTheme}
         onThemeChange={setCurrentTheme}
+        currentMode={currentMode}
+        onModeChange={setCurrentMode}
       />
 
       {/* Main content */}

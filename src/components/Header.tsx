@@ -1,14 +1,17 @@
 import { Github } from "lucide-react"
 import { Button } from "./ui/button"
 import { ThemeSwitcher } from "./ThemeSwitcher"
-import { type ThemeKey } from "@/lib/themes"
+import { ColorModeToggle } from "./ColorModeToggle"
+import { type ThemeKey, type ColorMode } from "@/lib/themes"
 
 interface HeaderProps {
   currentTheme: ThemeKey
   onThemeChange: (theme: ThemeKey) => void
+  currentMode: ColorMode
+  onModeChange: (mode: ColorMode) => void
 }
 
-export function Header({ currentTheme, onThemeChange }: HeaderProps) {
+export function Header({ currentTheme, onThemeChange, currentMode, onModeChange: onColorModeChange }: HeaderProps) {
   return (
     <header className="flex-shrink-0 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex items-center justify-between px-4 py-2">
@@ -30,8 +33,14 @@ export function Header({ currentTheme, onThemeChange }: HeaderProps) {
             <span>Projects Dashboard</span>
           </div>
 
-          {/* Theme switcher dropdown */}
-          <ThemeSwitcher currentTheme={currentTheme} onThemeChange={onThemeChange} />
+          {/* Theme controls */}
+          <div className="flex items-center gap-2">
+            {/* Color theme switcher */}
+            <ThemeSwitcher currentTheme={currentTheme} onThemeChange={onThemeChange} />
+
+            {/* Light/dark mode toggle */}
+            <ColorModeToggle currentMode={currentMode} onModeChange={onColorModeChange} />
+          </div>
 
           <Button
             variant="ghost"

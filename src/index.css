@@ -2,20 +2,46 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Force dark mode */
+/* Light theme colors */
 :root {
-    color-scheme: dark;
+    color-scheme: light;
+    --background: oklch(0.98 0.002 247.839);
+    --foreground: oklch(0.13 0.028 261.692);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.13 0.028 261.692);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.13 0.028 261.692);
+    --primary: oklch(0.65 0.20 280); /* Set by theme switcher */
+    --primary-foreground: oklch(0.985 0.002 247.839);
+    --secondary: oklch(0.96 0.004 247.858);
+    --secondary-foreground: oklch(0.13 0.028 261.692);
+    --muted: oklch(0.96 0.004 247.858);
+    --muted-foreground: oklch(0.50 0.015 261.692);
+    --accent: oklch(0.96 0.004 247.858);
+    --accent-foreground: oklch(0.13 0.028 261.692);
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(0.985 0.002 247.839);
+    --border: oklch(0.90 0.01 261.692 / 0.5);
+    --input: oklch(0.90 0.01 261.692 / 0.5);
+    --ring: oklch(0.65 0.20 280); /* Set by theme switcher */
+    --radius: 0.625rem;
+
+    /* Category colors */
+    --category-home: oklch(0.60 0.15 45); /* Orange/Yellow */
+    --category-ai: oklch(0.65 0.20 280); /* Purple */
+    --category-reno: oklch(0.65 0.15 145); /* Green */
 }
 
-/* Dark theme colors - Clawd Hub specific purple/blue theme */
-:root {
+/* Dark theme colors */
+.dark {
+    color-scheme: dark;
     --background: oklch(0.13 0.028 261.692);
     --foreground: oklch(0.985 0.002 247.839);
     --card: oklch(0.21 0.034 264.665);
     --card-foreground: oklch(0.985 0.002 247.839);
     --popover: oklch(0.21 0.034 264.665);
     --popover-foreground: oklch(0.985 0.002 247.839);
-    --primary: oklch(0.65 0.20 280); /* Purple for Clawd */
+    --primary: oklch(0.65 0.20 280); /* Set by theme switcher */
     --primary-foreground: oklch(0.985 0.002 247.839);
     --secondary: oklch(0.274 0.006 286.033);
     --secondary-foreground: oklch(0.985 0 0);
@@ -24,9 +50,10 @@
     --accent: oklch(0.278 0.033 256.848);
     --accent-foreground: oklch(0.985 0.002 247.839);
     --destructive: oklch(0.704 0.191 22.216);
+    --destructive-foreground: oklch(0.985 0.002 247.839);
     --border: oklch(1 0 0 / 10%);
     --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.551 0.027 264.364);
+    --ring: oklch(0.65 0.20 280); /* Set by theme switcher */
     --radius: 0.625rem;
 
     /* Category colors */

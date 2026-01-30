@@ -1,4 +1,5 @@
 export type ThemeKey = 'clawd' | 'ocean' | 'forest' | 'sunset'
+export type ColorMode = 'light' | 'dark'
 
 export interface Theme {
   name: string
@@ -35,11 +36,22 @@ export const themes: Record<ThemeKey, Theme> = {
 }
 
 const THEME_STORAGE_KEY = 'clawd:theme'
+const COLOR_MODE_STORAGE_KEY = 'clawd:colorMode'
 
 export function getStoredTheme(): ThemeKey {
   if (typeof localStorage === 'undefined') return 'clawd'
   const stored = localStorage.getItem(THEME_STORAGE_KEY)
   return (stored as ThemeKey) || 'clawd'
+}
+
+export function getStoredColorMode(): ColorMode {
+  if (typeof localStorage === 'undefined') {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  }
+  const stored = localStorage.getItem(COLOR_MODE_STORAGE_KEY)
+  if (stored === 'light' || stored === 'dark') return stored
+  // Check system preference
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
 export function applyTheme(themeKey: ThemeKey) {
@@ -54,4 +66,30 @@ export function applyTheme(themeKey: ThemeKey) {
   if (typeof localStorage !== 'undefined') {
     localStorage.setItem(THEME_STORAGE_KEY, themeKey)
   }
+}
+
+export function applyColorMode(mode: ColorMode) {
+  if (mode === 'dark') {
+    document.documentElement.classList.add('dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+  }
+
+  // Store preference
+  if (typeof localStorage !== 'undefined') {
+    localStorage.setItem(COLOR_MODE_STORAGE_KEY, mode)
+  }
+}
+
+export function toggleColorMode(): ColorMode {
+  const currentMode = getStoredColorMode()
+  const newMode: ColorMode = currentMode === 'dark' ? 'light' : 'dark'
+  applyColorMode(newMode)
+  return newMode
+}
+
+// Initialize color mode on load
+export function initializeColorMode() {
+  const mode = getStoredColorMode()
+  applyColorMode(mode)
 }
