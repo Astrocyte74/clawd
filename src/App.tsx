@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Header } from './components/Header'
 import { NavSidebar, type NavItem } from './components/NavSidebar'
 import { ProjectsView } from './components/ProjectsView'
@@ -50,6 +50,7 @@ function App() {
           {/* Content area */}
           <div className="flex-1 h-full overflow-hidden">
             <Routes>
+              <Route path="/index.html" element={<Navigate to="/" replace />} />
               <Route path="/" element={
                 activeNav === 'settings' ? (
                   <div className="flex flex-col items-center justify-center h-full text-center px-8">
