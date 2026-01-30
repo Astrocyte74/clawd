@@ -1,19 +1,19 @@
 ---
-// Header.astro - Navigation header with theme toggle
+// Header.astro - Enhanced navigation header with theme toggle
 import ThemeToggle from './ThemeToggle.astro';
 ---
 
-<header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
+<header class="sticky top-0 z-50 w-full border-b border-border/40 glass supports-[backdrop-filter]:backdrop-blur-xl">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
-      <!-- Logo -->
+      <!-- Enhanced Logo -->
       <a
         href="/"
-        class="flex items-center gap-2 font-bold text-lg sm:text-xl transition-transform hover:scale-105"
+        class="group flex items-center gap-2 font-bold text-lg sm:text-xl transition-all duration-300 hover:scale-105"
       >
-        <span class="relative flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-purple-600 text-white">
+        <span class="relative flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-purple-600 text-white shadow-lg shadow-primary/30 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-primary/40 group-hover:rotate-12">
           <svg
-            class="h-5 w-5"
+            class="h-5 w-5 transition-transform duration-300 group-hover:scale-110"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -27,20 +27,20 @@ import ThemeToggle from './ThemeToggle.astro';
             />
           </svg>
         </span>
-        <span class="gradient-text">Clawdbot Hub</span>
+        <span class="gradient-text transition-opacity duration-300 group-hover:opacity-90">Clawdbot Hub</span>
       </a>
 
       <!-- Right side -->
       <div class="flex items-center gap-3">
-        <!-- GitHub link -->
+        <!-- Enhanced GitHub link -->
         <a
-          href="https://github.com"
+          href="https://github.com/Astrocyte74/clawd"
           target="_blank"
           rel="noopener noreferrer"
-          class="hidden sm:inline-flex h-10 items-center justify-center rounded-xl bg-muted/50 px-4 text-sm font-medium transition-all duration-300 hover:bg-muted hover:scale-105"
+          class="hidden sm:inline-flex h-10 items-center justify-center rounded-xl bg-muted/50 px-4 text-sm font-medium transition-all duration-300 hover:bg-muted hover:scale-105 hover:shadow-lg hover:shadow-primary/10 shimmer"
         >
           <svg
-            class="mr-2 h-4 w-4"
+            class="mr-2 h-4 w-4 transition-transform duration-300 group-hover:scale-110"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
             viewBox="0 0 24 24"
@@ -52,7 +52,7 @@ import ThemeToggle from './ThemeToggle.astro';
           <span>GitHub</span>
         </a>
 
-        <!-- Theme toggle -->
+        <!-- Enhanced Theme toggle -->
         <ThemeToggle />
       </div>
     </div>
