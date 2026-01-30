@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/clawd/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clawd Hub - AI-Powered Projects</title>
+    <meta name="description" content="A modern dashboard for AI-powered projects, home improvement plans, and research documentation." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Clawd Hub - AI-Powered Projects" />
+    <meta property="og:description" content="A modern dashboard for AI-powered projects, home improvement plans, and research documentation." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Theme Script (prevents flash) -->
+    <script>
+      const themes = {
+        clawd: 'oklch(0.65 0.20 280)',
+        ocean: 'oklch(0.65 0.15 250)',
+        forest: 'oklch(0.65 0.15 145)',
+        sunset: 'oklch(0.65 0.20 45)'
+      };
+      const storedTheme = localStorage.getItem('clawd:theme') || 'clawd';
+      document.documentElement.style.setProperty('--primary', themes[storedTheme] || themes.clawd);
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

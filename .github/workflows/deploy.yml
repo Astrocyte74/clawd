@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Astro site
+      - name: Build Vite + React site
         run: |
           npm run build
           echo "astrocyte74.github.io/clawd" > dist/CNAME
