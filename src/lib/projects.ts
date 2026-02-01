@@ -109,5 +109,25 @@ export const projects: Project[] = [
         label: 'Markdown rendering'
       }
     ]
+  },
+  {
+    id: 'markdown-demo',
+    title: 'Markdown Page Template',
+    description: 'Demo showing how AI agents can create pages using only Markdown files. Just write .md content and it renders beautifully with frontmatter support.',
+    category: 'demo',
+    categoryLabel: 'Demo',
+    categoryIcon: '📄',
+    href: 'markdown-demo/',
+    date: 'Jan 31, 2026',
+    metadata: [
+      {
+        icon: '✍️',
+        label: 'AI-friendly'
+      },
+      {
+        icon: '📝',
+        label: 'Markdown only'
+      }
+    ]
   }
 ]
