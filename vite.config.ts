@@ -15,6 +15,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  assetsInclude: ['**/*.md'],
   build: {
     outDir: 'dist',
     emptyOutDir: true,
