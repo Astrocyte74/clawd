@@ -378,3 +378,137 @@ const calculationBoxStyle = {
 - Page components: `kebab-case.tsx` (e.g., `flooring-basement.tsx`)
 - Route paths: match file names (e.g., `/flooring-basement`)
 - Project IDs: use `kebab-case`
+
+---
+
+## 📝 Creating Pages with Markdown (Recommended for AI)
+
+**NEW: You can now create pages using only Markdown files!** This is the easiest way for AI agents to generate content.
+
+### Why Use Markdown?
+
+- ✅ **Simpler** — No React/JSX/TSX syntax to worry about
+- ✅ **Faster** — Just write content, formatting is automatic
+- ✅ **Fewer errors** — No complex component structure
+- ✅ **AI-friendly** — Perfect for LLM content generation
+
+### Quick Start: Create a Markdown Page
+
+#### Step 1: Create the Markdown File
+
+Create a file in `src/content/` with YAML frontmatter:
+
+```markdown
+---
+title: "Your Page Title"
+description: "A brief description of the page"
+date: "2026-01-31"
+category: "ai-research"
+---
+
+# Your Content Here
+
+Write your content in **Markdown**. You can use:
+- **Bold** and *italic* text
+- Lists (ordered or unordered)
+- [Links](https://example.com)
+- `inline code`
+- Code blocks
+- Tables
+- Blockquotes
+- And more!
+
+## Subsection Title
+
+More content here...
+```
+
+#### Step 2: Create the Page Wrapper (1 File)
+
+Create `src/pages/your-page.tsx`:
+
+```tsx
+import { MarkdownPageWithMeta } from '../components/MarkdownPage'
+import content from '../content/your-page.md?raw'
+
+export default function YourPage() {
+  return <MarkdownPageWithMeta rawContent={content} />
+}
+```
+
+#### Step 3: Add Route in App.tsx
+
+```tsx
+// src/App.tsx
+import YourPage from './pages/your-page'
+
+// Add to Routes:
+<Route path="/your-page" element={<YourPage />} />
+```
+
+#### Step 4: Add to Projects List (Optional)
+
+```tsx
+// src/lib/projects.ts
+{
+  id: 'your-page',
+  title: 'Your Page Title',
+  description: 'Brief description from above...',
+  category: 'ai-research', // or 'home-renovation', 'recipes', 'demo'
+  categoryLabel: 'AI Research',
+  categoryIcon: '🤖',
+  href: 'your-page/',
+  date: 'January 31, 2026',
+  metadata: [
+    { icon: '📝', label: 'Markdown powered' }
+  ]
+}
+```
+
+### Markdown Features Supported
+
+| Feature | Syntax |
+|---------|--------|
+| **Bold** | `**text**` |
+| *Italic* | `*text*` |
+| ~~Strikethrough~~ | `~~text~~` |
+| `inline code` | `` `code` `` |
+| Code blocks | ` ```language ... ``` ` |
+| [Links](url) | `[text](url)` |
+| Tables | ` \| column \| ... \| ` |
+| Blockquotes | `> quote` |
+| Lists | `- item` or `1. item` |
+
+### Frontmatter Fields (Optional)
+
+```yaml
+---
+title: "Page Title"           # Shown as H1
+description: "Description"    # Shown as subtitle
+date: "2026-01-31"           # Used in project card
+category: "ai-research"       # For filtering
+---
+```
+
+### Example: Full Markdown Page
+
+See `src/content/markdown-demo.md` for a complete example.
+
+### When to Use Each Approach
+
+| Use Markdown When... | Use React/TSX When... |
+|---------------------|----------------------|
+| Creating articles, docs, reports | Building interactive UIs |
+| AI generating content | Need complex state/interactivity |
+| Simple page with text + images | Need custom animations/logic |
+| Quick iteration on content | Need forms/user input |
+
+### Migration: Convert Existing Page to Markdown
+
+If you have an existing TSX page with mostly text content:
+
+1. Copy the content to `src/content/your-page.md`
+2. Add YAML frontmatter (title, description)
+3. Create the simple wrapper as shown in Step 2
+4. Update the route
+5. Delete the old complex TSX file
