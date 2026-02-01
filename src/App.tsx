@@ -10,6 +10,7 @@ import AINewsJan2026Page from './pages/ai-news-jan2026'
 import DemoFeaturesPage from './pages/demo-features'
 import MarkdownDemoPage from './pages/markdown-demo'
 import CodingFrameworksGuidePage from './pages/coding-frameworks-guide'
+import PortfolioPage from './pages/portfolio'
 import { getStoredTheme, initializeColorMode, type ThemeKey, type ColorMode } from './lib/themes'
 
 function DashboardLayout({ activeNav, setActiveNav, currentTheme, setCurrentTheme, currentMode, setCurrentMode }: {
@@ -108,6 +109,7 @@ function App() {
         <Route path="/demo-features" element={<DemoFeaturesPage />} />
         <Route path="/markdown-demo" element={<MarkdownDemoPage />} />
         <Route path="/coding-frameworks-guide" element={<CodingFrameworksGuidePage />} />
+        <Route path="/portfolio" element={<PortfolioPage />} />
       </Routes>
     </BrowserRouter>
   )
