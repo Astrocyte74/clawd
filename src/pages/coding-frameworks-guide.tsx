@@ -1,17 +1,12 @@
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import codingFrameworksGuide from './coding-frameworks-guide.md'
+import { MarkdownPageWithMeta } from '../components/MarkdownPage'
+import markdownContent from './coding-frameworks-guide.md?raw'
 
-function CodingFrameworksGuidePage() {
-  return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <div className="prose prose-slate dark:prose-invert max-w-none">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-          {codingFrameworksGuide}
-        </ReactMarkdown>
-      </div>
-    </div>
-  )
+/**
+ * Coding Frameworks Guide
+ *
+ * Practical comparison of React, Next.js, Vite, and shadcn/ui.
+ * Learn when to use each tool with code examples and real-world use cases.
+ */
+export default function CodingFrameworksGuidePage() {
+  return <MarkdownPageWithMeta rawContent={markdownContent} />
 }
-
-export default CodingFrameworksGuidePage
