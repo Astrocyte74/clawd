@@ -2,7 +2,7 @@ export interface Project {
   id: string
   title: string
   description: string
-  category: 'home-renovation' | 'ai-research' | 'recipes' | 'demo'
+  category: 'home-renovation' | 'ai-research' | 'recipes' | 'demo' | 'guide'
   categoryLabel: string
   categoryIcon: string
   href: string
@@ -127,6 +127,34 @@ export const projects: Project[] = [
       {
         icon: '📝',
         label: 'Markdown only'
+      }
+    ]
+  },
+  {
+    id: 'coding-frameworks-guide',
+    title: 'Coding Frameworks Guide',
+    description: 'Practical comparison of React, Next.js, Vite, and shadcn/ui. Learn when to use each tool with code examples, project structures, and real-world use cases.',
+    category: 'guide',
+    categoryLabel: 'Guide',
+    categoryIcon: '📚',
+    href: 'coding-frameworks-guide/',
+    date: 'Jan 31, 2026',
+    metadata: [
+      {
+        icon: '⚛️',
+        label: 'React'
+      },
+      {
+        icon: '⚡',
+        label: 'Next.js'
+      },
+      {
+        icon: '🔧',
+        label: 'Vite'
+      },
+      {
+        icon: '🎨',
+        label: 'shadcn/ui'
       }
     ]
   }
