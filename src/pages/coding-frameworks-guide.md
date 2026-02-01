@@ -7,6 +7,23 @@ description: "Understanding Next.js, React, Vite, shadcn/ui and how they work to
 
 A practical comparison of modern web development tools.
 
+---
+
+## TL;DR (30-Second Summary)
+
+| Your Goal | Use This Stack |
+|-----------|----------------|
+| 🎓 **Learning web development** | Vite + React |
+| 🚀 **Building a production app** | Next.js + shadcn/ui |
+| 💼 **Startup/MVP** | Next.js + shadcn/ui |
+| 🎨 **Dashboard/SPA** | Vite + React + shadcn/ui |
+| 🔧 **Just learning concepts** | Vite + React |
+
+**Rule of thumb:**
+- Start with **Vite + React** to learn
+- Move to **Next.js** when you need APIs, SEO, or server features
+- Add **shadcn/ui** when you want beautiful UI components
+
 ## Quick Overview
 
 | Tool | Type | What It Does | When to Use |
@@ -15,6 +32,43 @@ A practical comparison of modern web development tools.
 | **Next.js** | Framework | Full-stack React apps | Production apps, SEO, APIs |
 | **Vite** | Build Tool | Fast dev server | New projects, speed |
 | **shadcn/ui** | Component library | Pre-built components | Beautiful UIs quickly |
+
+---
+
+## Choose Your Path
+
+Not sure where to start? Pick your scenario:
+
+### 🎓 I'm New to Web Development
+**Start with:** Vite + React
+- Learn components, state, props
+- Fast dev experience
+- Less complexity than Next.js
+
+### 🚀 I'm Building a Production App
+**Start with:** Next.js + shadcn/ui
+- Server-side rendering (SEO)
+- Built-in API routes
+- Beautiful pre-built components
+- Deploy to Vercel in seconds
+
+### 💼 I'm Building a Startup MVP
+**Start with:** Next.js + shadcn/ui
+- Move fast with pre-built components
+- Easy to add backend later
+- Professional appearance out of the box
+
+### 🎨 I'm Building a Dashboard/SPA
+**Start with:** Vite + React + shadcn/ui
+- Fast, smooth interactions
+- No server complexity needed
+- Great for data-heavy apps
+
+### 🔧 I Just Want to Learn Concepts
+**Start with:** Vite + React
+- Focus on fundamentals
+- Less framework magic
+- Understand how things work
 
 ---
 
