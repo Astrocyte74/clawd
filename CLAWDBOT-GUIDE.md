@@ -385,6 +385,33 @@ const calculationBoxStyle = {
 
 **NEW: You can now create pages using only Markdown files!** This is the easiest way for AI agents to generate content.
 
+### ⚠️ One-Time Setup (Already Done)
+
+The following configurations are **already complete** in this project. You don't need to do these steps, but they're documented for reference.
+
+#### 1. Vite Config (vite.config.ts)
+```typescript
+export default defineConfig({
+  // ... existing config
+  assetsInclude: ['**/*.md'],  // ← This tells Vite to handle .md files
+})
+```
+
+#### 2. TypeScript Declarations (src/vite-env.d.ts)
+```typescript
+declare module '*.md' {
+  const content: string
+  export default content
+}
+
+declare module '*?raw' {
+  const content: string
+  export default content
+}
+```
+
+**These are already configured!** You can proceed directly to creating pages.
+
 ### Why Use Markdown?
 
 - ✅ **Simpler** — No React/JSX/TSX syntax to worry about
@@ -512,3 +539,46 @@ If you have an existing TSX page with mostly text content:
 3. Create the simple wrapper as shown in Step 2
 4. Update the route
 5. Delete the old complex TSX file
+
+### Alternative Pattern: Co-located Files (Simpler)
+
+Instead of a separate `src/content/` folder, you can put the `.md` file right next to your `.tsx` page file:
+
+```
+src/pages/
+├── your-page.tsx
+└── your-page.md    ← Same directory!
+```
+
+**The page wrapper then uses a relative import:**
+
+```tsx
+// src/pages/your-page.tsx
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import content from './your-page.md'  // ← Same directory
+
+export default function YourPage() {
+  return (
+    <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="prose dark:prose-invert max-w-none">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {content}
+        </ReactMarkdown>
+      </div>
+    </div>
+  )
+}
+```
+
+**When to use this pattern:**
+- ✅ Quick/simple pages
+- ✅ One-off content
+- ✅ Don't need frontmatter parsing
+
+**When to use `src/content/` + `MarkdownPageWithMeta`:**
+- ✅ Want consistent page layout (header, back button, etc.)
+- ✅ Multiple markdown pages
+- ✅ Need frontmatter metadata
+
+Both patterns work! Choose based on your needs.
