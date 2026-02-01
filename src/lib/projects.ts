@@ -2,7 +2,7 @@ export interface Project {
   id: string
   title: string
   description: string
-  category: 'home-renovation' | 'ai-research' | 'recipes' | 'demo' | 'guide' | 'portfolio'
+  category: 'home-renovation' | 'ai-research' | 'recipes' | 'demo' | 'guide'
   categoryLabel: string
   categoryIcon: string
   href: string
@@ -155,30 +155,6 @@ export const projects: Project[] = [
       {
         icon: '🎨',
         label: 'shadcn/ui'
-      }
-    ]
-  },
-  {
-    id: 'portfolio',
-    title: 'Portfolio',
-    description: 'Personal portfolio showcasing web development projects, skills in React/Next.js/Vite, and a collection of built applications.',
-    category: 'portfolio',
-    categoryLabel: 'Portfolio',
-    categoryIcon: '💼',
-    href: 'portfolio/',
-    date: 'Jan 31, 2026',
-    metadata: [
-      {
-        icon: '⚛️',
-        label: 'React'
-      },
-      {
-        icon: '⚡',
-        label: 'Next.js'
-      },
-      {
-        icon: '🎨',
-        label: 'Web Dev'
       }
     ]
   }
