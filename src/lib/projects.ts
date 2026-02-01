@@ -2,7 +2,7 @@ export interface Project {
   id: string
   title: string
   description: string
-  category: 'home-renovation' | 'ai-research' | 'recipes'
+  category: 'home-renovation' | 'ai-research' | 'recipes' | 'demo'
   categoryLabel: string
   categoryIcon: string
   href: string
@@ -87,6 +87,26 @@ export const projects: Project[] = [
       {
         icon: '🌍',
         label: 'Global coverage'
+      }
+    ]
+  },
+  {
+    id: 'demo-features',
+    title: 'Feature Demo: Motion + Markdown',
+    description: 'Interactive showcase of new Motion animations and react-markdown rendering capabilities. See smooth entrance effects, hover states, and formatted content rendering.',
+    category: 'demo',
+    categoryLabel: 'Demo',
+    categoryIcon: '🎨',
+    href: 'demo-features/',
+    date: 'Jan 31, 2026',
+    metadata: [
+      {
+        icon: '✨',
+        label: 'Motion animations'
+      },
+      {
+        icon: '📝',
+        label: 'Markdown rendering'
       }
     ]
   }

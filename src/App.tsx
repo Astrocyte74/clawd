@@ -7,6 +7,7 @@ import FlooringBasementPage from './pages/flooring-basement'
 import AstronomicalEventsPage from './pages/astronomical-events'
 import TofuRecipesPage from './pages/tofu-recipes'
 import AINewsJan2026Page from './pages/ai-news-jan2026'
+import DemoFeaturesPage from './pages/demo-features'
 import { getStoredTheme, initializeColorMode, type ThemeKey, type ColorMode } from './lib/themes'
 
 function DashboardLayout({ activeNav, setActiveNav, currentTheme, setCurrentTheme, currentMode, setCurrentMode }: {
@@ -102,6 +103,7 @@ function App() {
         <Route path="/astronomical-events" element={<AstronomicalEventsPage />} />
         <Route path="/tofu-recipes" element={<TofuRecipesPage />} />
         <Route path="/ai-news-jan2026" element={<AINewsJan2026Page />} />
+        <Route path="/demo-features" element={<DemoFeaturesPage />} />
       </Routes>
     </BrowserRouter>
   )

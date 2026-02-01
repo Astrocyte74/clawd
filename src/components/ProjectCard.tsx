@@ -4,15 +4,22 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
 import type { Project } from "@/lib/projects"
+import { motion } from "motion/react"
 
 interface ProjectCardProps {
   project: Project
-  delay?: string
+  index?: number
 }
 
-export function ProjectCard({ project, delay = "0s" }: ProjectCardProps) {
+export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   return (
-    <Card className="group hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 overflow-hidden animate-in" style={{ animationDelay: delay }}>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
+      whileHover={{ y: -4 }}
+    >
+      <Card className="group hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 overflow-hidden h-full">
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-2">
           <div className="flex items-center gap-2">
@@ -71,5 +78,6 @@ export function ProjectCard({ project, delay = "0s" }: ProjectCardProps) {
         </div>
       </CardFooter>
     </Card>
+    </motion.div>
   )
 }

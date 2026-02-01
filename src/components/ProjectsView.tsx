@@ -55,7 +55,7 @@ export function ProjectsView({ activeNav }: ProjectsViewProps) {
               <ProjectCard
                 key={project.id}
                 project={project}
-                delay={`${index * 0.1}s`}
+                index={index}
               />
             ))}
           </div>
