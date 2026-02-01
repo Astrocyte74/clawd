@@ -385,6 +385,15 @@ const calculationBoxStyle = {
 
 **NEW: You can now create pages using only Markdown files!** This is the easiest way for AI agents to generate content.
 
+### ✅ Complete Checklist (Do All Steps)
+
+When creating a new Markdown page, ensure you complete **ALL 4 steps**:
+
+- [ ] **Step 1**: Create `.md` file (in `src/content/` or co-located in `src/pages/`)
+- [ ] **Step 2**: Create `.tsx` page wrapper
+- [ ] **Step 3**: Add route in `src/App.tsx`
+- [ ] **Step 4**: Add to `src/lib/projects.ts` ← **This creates the dashboard card!**
+
 ### ⚠️ One-Time Setup (Already Done)
 
 The following configurations are **already complete** in this project. You don't need to do these steps, but they're documented for reference.
@@ -473,7 +482,9 @@ import YourPage from './pages/your-page'
 <Route path="/your-page" element={<YourPage />} />
 ```
 
-#### Step 4: Add to Projects List (Optional)
+#### Step 4: Add to Projects List (IMPORTANT - Creates Dashboard Card)
+
+**This step creates the card that appears on the main dashboard!** Without this, the page exists but won't be visible from the hub.
 
 ```tsx
 // src/lib/projects.ts
