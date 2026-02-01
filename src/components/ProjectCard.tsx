@@ -42,16 +42,23 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
           <div className="flex items-center gap-3 text-xs text-muted-foreground">
             {project.metadata.map((meta, index) => (
               <div key={index} className="flex items-center gap-1.5">
-                <svg
-                  className="h-3.5 w-3.5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path d={meta.icon} strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                {/* Check if icon is an emoji (contains non-ASCII) or SVG path */}
+                {/\p{Emoji}/u.test(meta.icon) || meta.icon.length < 20 ? (
+                  // Render emoji as text
+                  <span className="text-sm">{meta.icon}</span>
+                ) : (
+                  // Render as SVG path (Lucide icon style)
+                  <svg
+                    className="h-3.5 w-3.5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path d={meta.icon} strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                )}
                 <span>{meta.label}</span>
               </div>
             ))}
