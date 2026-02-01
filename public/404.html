@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Clawd Hub</title>
+    <script type="text/javascript">
+      // Single Page Apps - GitHub Pages redirect
+      // This script redirects 404s to index.html so React Router can handle the route
+      var path = window.location.pathname;
+      // Remove the /clawd/ prefix and redirect to index with the path
+      var segment = path.replace(/^\/clawd\//, '');
+      window.location.replace('/clawd/?p=' + encodeURIComponent(segment) + window.location.search + window.location.hash);
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>

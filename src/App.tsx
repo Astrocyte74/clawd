@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom'
 import { Header } from './components/Header'
 import { NavSidebar, type NavItem } from './components/NavSidebar'
 import { ProjectsView } from './components/ProjectsView'
@@ -90,7 +90,42 @@ function App() {
 
   return (
     <BrowserRouter basename="/clawd">
-      <Routes>
+      <AppRouter
+        activeNav={activeNav}
+        setActiveNav={setActiveNav}
+        currentTheme={currentTheme}
+        setCurrentTheme={setCurrentTheme}
+        currentMode={currentMode}
+        setCurrentMode={setCurrentMode}
+      />
+    </BrowserRouter>
+  )
+}
+
+function AppRouter({ activeNav, setActiveNav, currentTheme, setCurrentTheme, currentMode, setCurrentMode }: {
+  activeNav: NavItem
+  setActiveNav: (nav: NavItem) => void
+  currentTheme: ThemeKey
+  setCurrentTheme: (theme: ThemeKey) => void
+  currentMode: ColorMode
+  setCurrentMode: (mode: ColorMode) => void
+}) {
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  useEffect(() => {
+    // Check if we have a ?p= query parameter from 404.html redirect
+    const params = new URLSearchParams(location.search)
+    const path = params.get('p')
+
+    if (path) {
+      // Redirect to the actual path and remove the query parameter
+      navigate('/' + path, { replace: true })
+    }
+  }, [location, navigate])
+
+  return (
+    <Routes>
         <Route path="/index.html" element={<Navigate to="/" replace />} />
         <Route path="/" element={
           <DashboardLayout
@@ -111,8 +146,7 @@ function App() {
         <Route path="/coding-frameworks-guide" element={<CodingFrameworksGuidePage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
       </Routes>
-    </BrowserRouter>
-  )
+    )
 }
 
 export default App
