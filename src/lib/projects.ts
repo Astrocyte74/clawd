@@ -157,5 +157,29 @@ export const projects: Project[] = [
         label: 'shadcn/ui'
       }
     ]
+  },
+  {
+    id: 'space-exploration-guide',
+    title: 'Space Exploration Guide',
+    description: 'Understanding NASA Artemis, SpaceX Starship, and the race to the Moon and Mars. Learn rocket tech, timelines, and how they work together.',
+    category: 'guide',
+    categoryLabel: 'Guide',
+    categoryIcon: '🚀',
+    href: 'space-exploration-guide/',
+    date: 'Feb 2, 2026',
+    metadata: [
+      {
+        icon: '🌙',
+        label: 'Artemis'
+      },
+      {
+        icon: '🚀',
+        label: 'Starship'
+      },
+      {
+        icon: '🔴',
+        label: 'Mars'
+      }
+    ]
   }
 ]
