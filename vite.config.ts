@@ -1,17 +1,15 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-import path from 'path'
+// Detect deployment environment
+const getBasePath = () => {
+  // For Render deployment
+  return '/'
+}
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
   ],
-  // Remove base path for Render (set to '/' for root deployment)
-  // For GitHub Pages, use: base: '/clawd/'
-  base: '/',
+  base: getBasePath(),
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

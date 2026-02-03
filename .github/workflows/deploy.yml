@@ -33,7 +33,7 @@ jobs:
 
       - name: Build Vite + React site
         run: |
-          npm run build
+          npm run build:gh-pages
           echo "astrocyte74.github.io/clawd" > dist/CNAME
 
       - name: Upload artifact
