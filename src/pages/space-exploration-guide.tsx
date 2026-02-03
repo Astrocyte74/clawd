@@ -3,7 +3,7 @@ import { ArrowLeft, Calendar, Rocket, Globe2, Zap, Users, TrendingUp, Play, News
 import { Link } from "react-router-dom"
 import { Header } from "../components/Header"
 import { getStoredTheme, type ThemeKey, type ColorMode, initializeColorMode } from "../lib/themes"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 /**
  * Space Exploration Guide - ULTIMATE EDITION
@@ -617,16 +617,34 @@ function RocketComparison({ activeTab }: { activeTab: 'artemis' | 'starship' | '
 
 // Interactive Mission Map
 function MissionMap() {
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
+  const mapRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (mapRef.current) {
+      setDimensions({
+        width: mapRef.current.offsetWidth,
+        height: mapRef.current.offsetHeight
+      })
+    }
+  }, [])
+
   const missions = [
-    { name: "Earth", x: 50, y: 90, icon: "🌍", color: "from-green-500 to-blue-500" },
-    { name: "Moon", x: 75, y: 30, icon: "🌙", color: "from-gray-400 to-gray-600" },
-    { name: "Mars", x: 20, y: 20, icon: "🪐", color: "from-orange-500 to-red-500" },
+    { name: "Earth", x: 0.5, y: 0.9, icon: "🌍", color: "from-green-500 to-blue-500" },
+    { name: "Moon", x: 0.75, y: 0.3, icon: "🌙", color: "from-gray-400 to-gray-600" },
+    { name: "Mars", x: 0.2, y: 0.2, icon: "🪐", color: "from-orange-500 to-red-500" },
   ]
 
   const paths = [
     { from: 0, to: 1, name: "Artemis Missions", color: "border-blue-500" },
     { from: 1, to: 2, name: "Mars Transit", color: "border-red-500" },
   ]
+
+  const getPathD = (fromX: number, fromY: number, toX: number, toY: number) => {
+    const midX = (fromX + toX) / 2
+    const midY = (fromY + toY) / 2 - 0.1
+    return `M ${fromX} ${fromY} Q ${midX} ${midY} ${toX} ${toY}`
+  }
 
   return (
     <section className="py-20 px-4">
@@ -641,7 +659,11 @@ function MissionMap() {
           <p className="text-xl text-muted-foreground">Interactive journey through space</p>
         </motion.div>
 
-        <div className="relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-3xl p-8 md:p-12" style={{ minHeight: '400px' }}>
+        <div
+          ref={mapRef}
+          className="relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-3xl p-8 md:p-12"
+          style={{ minHeight: '400px' }}
+        >
           {/* Stars background */}
           <div className="absolute inset-0 overflow-hidden rounded-3xl">
             {Array.from({ length: 50 }).map((_, i) => (
@@ -657,34 +679,40 @@ function MissionMap() {
           </div>
 
           {/* Connection paths */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none">
-            {paths.map((path, index) => {
-              const from = missions[path.from]
-              const to = missions[path.to]
-              return (
-                <motion.path
-                  key={index}
-                  d={`M ${from.x}% ${from.y}% Q ${(from.x + to.x) / 2}% ${(from.y + to.y) / 2 - 20}% ${to.x}% ${to.y}%`}
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  fill="none"
-                  className={path.color}
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: 1, opacity: 0.5 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 2, delay: index * 0.5 }}
-                  style={{ strokeDasharray: '5,5' }}
-                />
-              )
-            })}
-          </svg>
+          {dimensions.width > 0 && dimensions.height > 0 && (
+            <svg className="absolute inset-0 w-full h-full pointer-events-none">
+              {paths.map((path, index) => {
+                const from = missions[path.from]
+                const to = missions[path.to]
+                const fromX = from.x * dimensions.width
+                const fromY = from.y * dimensions.height
+                const toX = to.x * dimensions.width
+                const toY = to.y * dimensions.height
+                return (
+                  <motion.path
+                    key={index}
+                    d={getPathD(fromX, fromY, toX, toY)}
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                    className={path.color}
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    whileInView={{ pathLength: 1, opacity: 0.5 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 2, delay: index * 0.5 }}
+                    style={{ strokeDasharray: '5,5' }}
+                  />
+                )
+              })}
+            </svg>
+          )}
 
           {/* Planet markers */}
           {missions.map((mission, index) => (
             <motion.div
               key={mission.name}
               className="absolute cursor-pointer group"
-              style={{ left: `${mission.x}%`, top: `${mission.y}%`, transform: 'translate(-50%, -50%)' }}
+              style={{ left: `${mission.x * 100}%`, top: `${mission.y * 100}%`, transform: 'translate(-50%, -50%)' }}
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
