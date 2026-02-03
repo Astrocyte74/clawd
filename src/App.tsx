@@ -89,7 +89,7 @@ function App() {
   }, [])
 
   return (
-    <BrowserRouter basename="/clawd">
+    <BrowserRouter basename="/">
       <AppRouter
         activeNav={activeNav}
         setActiveNav={setActiveNav}

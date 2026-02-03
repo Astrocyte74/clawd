@@ -9,7 +9,9 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: '/clawd/',
+  // Remove base path for Render (set to '/' for root deployment)
+  // For GitHub Pages, use: base: '/clawd/'
+  base: '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
