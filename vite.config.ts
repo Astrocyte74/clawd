@@ -1,15 +1,9 @@
-// Detect deployment environment
-const getBasePath = () => {
-  // For Render deployment
-  return '/'
-}
-
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
   ],
-  base: getBasePath(),
+  base: '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
