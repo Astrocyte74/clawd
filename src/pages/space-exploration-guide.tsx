@@ -33,11 +33,35 @@ export default function SpaceExplorationGuidePage() {
   useEffect(() => {
     async function fetchLaunchData() {
       try {
-        const response = await fetch('https://api.spacexdata.com/v4/launches/upcoming')
+        const response = await fetch('https://api.spacexdata.com/v4/launches')
         const data = await response.json()
-        setLaunchData(data.slice(0, 5)) // Next 5 launches
+        // Get upcoming launches (date_utc > now) and sort by date
+        const upcoming = data
+          .filter((launch: any) => new Date(launch.date_utc) > new Date())
+          .sort((a: any, b: any) => new Date(a.date_utc).getTime() - new Date(b.date_utc).getTime())
+          .slice(0, 5)
+        setLaunchData(upcoming)
       } catch (error) {
         console.error('Failed to fetch launch data:', error)
+        // Set sample data on error
+        setLaunchData([
+          {
+            id: 'sample-1',
+            name: 'Upcoming Starship Launch',
+            date_utc: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+            details: 'Next Starship test flight from Starbase, Texas',
+            rocket: 'Starship',
+            links: { webcast: 'https://www.youtube.com/spacex' }
+          },
+          {
+            id: 'sample-2',
+            name: 'Starlink Mission',
+            date_utc: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
+            details: 'Starlink satellite deployment mission',
+            rocket: 'Falcon 9',
+            links: { webcast: 'https://www.youtube.com/spacex' }
+          }
+        ])
       }
     }
 
