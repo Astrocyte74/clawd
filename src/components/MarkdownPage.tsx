@@ -111,11 +111,7 @@ function MermaidDiagram({ chart, isDark }: { chart: string; isDark: boolean }) {
               min-width: 40px !important;
               text-align: center !important;
             }
-            .mermaid .edgePath path {
-              stroke-width: 3px !important;
-              stroke: #94a3b8 !important;
-            }
-            .mermaid .edgePath .path {
+            .mermaid .edgePath path, .mermaid .edgePath .path, .mermaid path.edgePath, .mermaid .flowchart-link {
               stroke-width: 3px !important;
               stroke: #94a3b8 !important;
             }
