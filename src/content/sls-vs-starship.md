@@ -72,26 +72,22 @@ The **Space Launch System (SLS)** and **Starship** represent two fundamentally d
 
 ### SLS: Apollo-Style Architecture
 
-```
-┌─────────────────────┐
-│   Orion Spacecraft  │ ← Crew capsule (4 astronauts)
-│   (ESA Service Mod) │
-└──────────┬──────────┘
-           │
-┌──────────▼──────────┐
-│   Upper Stage       │ ← ICPS (Block 1) or EUS (Block 1B/2)
-│   (1x RL10 engine)  │
-└──────────┬──────────┘
-           │
-┌──────────▼──────────┐
-│   Core Stage        │ ← LH2/LOX, 4x RS-25 engines
-│   (Expendable)      │
-└──────────┬──────────┘
-           │
-┌──────────▼──────────┐
-│   Solid Boosters    │ ← 2x 5-segment SRBs (Block 1/1B)
-│   (Expendable)      │
-└─────────────────────┘
+```mermaid
+graph TD
+    A[Orion Spacecraft<br/>Crew: 4 astronauts] -->|Separates| B[Upper Stage<br/>ICPS Block 1 or EUS Block 1B/2<br/>1x RL10 engine]
+    B -->|Separates| C[Core Stage<br/>LH2/LOX fuel<br/>4x RS-25 engines]
+    C -->|Separates| D[Solid Boosters<br/>2x 5-segment SRBs<br/>Block 1/1B]
+    D -->|Jettison| E[Space]
+    C -->|Burnout| E
+    B -->|TLI Burn| F[Moon Orbit]
+    A -->|Return| G[Earth Splashdown]
+
+    style A fill:#3b82f6,color:#fff
+    style B fill:#8b5cf6,color:#fff
+    style C fill:#f59e0b,color:#fff
+    style D fill:#ef4444,color:#fff
+    style F fill:#e5e7eb,color:#000
+    style G fill:#10b981,color:#fff
 ```
 
 **Key Characteristics:**
