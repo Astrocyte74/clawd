@@ -125,8 +125,15 @@ function MermaidDiagram({ chart, isDark }: { chart: string; isDark: boolean }) {
               fill: ${edgeLabelBg} !important;
               stroke: none !important;
               opacity: 1 !important;
-              rx: 6px !important;
-              ry: 6px !important;
+
+              /* More pill-like corners */
+              rx: 10px !important;
+              ry: 10px !important;
+
+              /* “Padding” for SVG labels: scale the background rect around the text */
+              transform-box: fill-box;
+              transform-origin: center;
+              transform: scale(1.25, 1.45);
             }
 
             /* Lines / arrows: boost contrast and thickness */
