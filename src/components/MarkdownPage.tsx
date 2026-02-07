@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus, vs } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, memo } from 'react'
 import { motion } from "motion/react"
 import { Header } from "./Header"
 import { getStoredTheme, type ThemeKey, type ColorMode, initializeColorMode } from "../lib/themes"
@@ -100,6 +100,9 @@ function MermaidDiagram({ chart, isDark }: { chart: string; isDark: boolean }) {
 
   return <div ref={ref} className="mermaid-diagram flex justify-center my-6" />
 }
+
+// Memoize to prevent re-renders when parent component updates (e.g., scroll progress)
+const MemoizedMermaidDiagram = memo(MermaidDiagram)
 
 /**
  * Generic Markdown Page Component
@@ -290,7 +293,7 @@ export function MarkdownPage({ content, title, description }: MarkdownPageProps)
 
                     // Handle Mermaid diagrams
                     if (!inline && language === 'mermaid') {
-                      return <MermaidDiagram chart={String(children).replace(/\n$/, '')} isDark={isDark} />
+                      return <MemoizedMermaidDiagram chart={String(children).replace(/\n$/, '')} isDark={isDark} />
                     }
 
                     // Handle syntax highlighting for other languages
