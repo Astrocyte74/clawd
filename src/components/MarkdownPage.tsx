@@ -98,19 +98,29 @@ function MermaidDiagram({ chart, isDark }: { chart: string; isDark: boolean }) {
       try {
         const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`
         const { svg } = await mermaid.render(id, chart)
-        // Add custom CSS for edge labels
+        // Add custom CSS for edge labels and lines
         const css = `
           <style>
             .mermaid .edgeLabel {
               background-color: #6366f1 !important;
               color: white !important;
-              padding: 4px 8px !important;
-              font-size: 13px !important;
-              font-weight: 500 !important;
-              border-radius: 4px !important;
+              padding: 6px 12px !important;
+              font-size: 14px !important;
+              font-weight: 600 !important;
+              border-radius: 6px !important;
+              min-width: 40px !important;
+              text-align: center !important;
             }
-            .mermaid .edgePath {
-              stroke-width: 2px !important;
+            .mermaid .edgePath path {
+              stroke-width: 3px !important;
+              stroke: #94a3b8 !important;
+            }
+            .mermaid .edgePath .path {
+              stroke-width: 3px !important;
+              stroke: #94a3b8 !important;
+            }
+            .mermaid flowchart {
+              font-family: system-ui, sans-serif !important;
             }
           </style>
         `
