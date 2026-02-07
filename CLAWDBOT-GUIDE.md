@@ -346,7 +346,7 @@ git push origin main
 ### Render Pages (Current)
 - **Base URL**: `/` (root path)
 - **BrowserRouter basename**: `/`
-- **Deploy location**: https://clawd-hub.onrender.com/
+- **Deploy location**: https://stonebot.onrender.com/
 - **Deployment**: Automatic on git push to main branch
 - **Build Command**: `npm run build`
 - **Publish Directory**: `dist/`

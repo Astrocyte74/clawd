@@ -8,7 +8,7 @@ Welcome! This guide gets you oriented quickly. For detailed instructions, see `C
 
 **Clawd Hub** is an AI-powered project dashboard for showcasing research, experiments, and documentation.
 
-**Live Site:** https://clawd-hub.onrender.com/
+**Live Site:** https://stonebot.onrender.com/
 
 **Repository:** https://github.com/Astrocyte74/clawd
 
