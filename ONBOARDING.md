@@ -36,6 +36,7 @@ Welcome! This guide gets you oriented quickly. For detailed instructions, see `C
 | Theme system | ✅ Working | 4 color themes × 2 modes (light/dark) |
 | Render deployment | ✅ Working | Auto-deploys on push to `main` |
 | SPA routing | ✅ Working | React Router with basename `/` |
+| Visual polish | ✅ Working | Progress bar, TOC, syntax highlighting, callouts |
 
 ---
 
@@ -75,6 +76,54 @@ pwd  # Should output: /Users/markdarby16/clawd/projects/clawd-hub
 | Emoji icons break | Fixed! ProjectCard now handles both emoji and SVG paths |
 | Route doesn't work | Check `basename="/"` in BrowserRouter, not `/clawd/` |
 | Build fails | Check for missing imports or TypeScript errors first |
+
+---
+
+## Markdown Features (Visual Polish)
+
+All Markdown pages include these enhanced features:
+
+### Callout Boxes (GitHub-style)
+
+Use callouts for tips, warnings, and notes:
+
+```markdown
+> [!TIP]
+> This is a helpful tip!
+
+> [!WARNING]
+> Be careful here!
+
+> [!NOTE]
+> Something to remember.
+```
+
+### Code Syntax Highlighting
+
+Code blocks get automatic VS Code-style syntax highlighting:
+
+```markdown
+\```javascript
+const greeting = "Hello, World!"
+console.log(greeting)
+\```
+```
+
+### Table of Contents (Auto-generated)
+
+Headings (h1-h3) automatically generate a table of contents on the right side (desktop).
+
+### Reading Progress Bar
+
+A progress bar at the top shows how far through the page you are.
+
+### Back-to-Top Button
+
+Appears after scrolling down, smoothly scrolls back to top.
+
+### Smooth Scrolling
+
+All anchor links and scroll behavior is smooth.
 
 ---
 
