@@ -61,13 +61,19 @@ function initializeMermaid(isDark: boolean) {
     securityLevel: 'loose',
     themeVariables: {
       darkMode: isDark,
-      background: isDark ? '#1a1a1a' : '#ffffff',
-      primaryColor: isDark ? '#bb86fc' : '#6200ee',
-      primaryTextColor: isDark ? '#ffffff' : '#000000',
-      primaryBorderColor: isDark ? '#bb86fc' : '#6200ee',
-      lineColor: isDark ? '#e0e0e0' : '#333333',
-      secondaryColor: isDark ? '#3700b3' : '#03dac6',
-      tertiaryColor: isDark ? '#3700b3' : '#f5f5f5',
+      background: isDark ? '#0a0a0a' : '#ffffff',
+      primaryColor: isDark ? '#6366f1' : '#6366f1',
+      primaryTextColor: isDark ? '#ffffff' : '#ffffff',
+      primaryBorderColor: isDark ? '#818cf8' : '#4f46e5',
+      lineColor: isDark ? '#94a3b8' : '#475569',
+      secondaryColor: isDark ? '#1e1b4b' : '#e0e7ff',
+      tertiaryColor: isDark ? '#1e1b4b' : '#f5f5f5',
+      // Improved edge labels for better visibility
+      edgeLabelBackground: isDark ? '#1e1b4b' : '#f1f5f9',
+      edgeLabelColor: isDark ? '#e2e8f0' : '#1e293b',
+      // Better contrast for decision diamonds
+      clusterBkg: isDark ? '#1e1b4b' : '#f1f5f9',
+      clusterBorder: isDark ? '#6366f1' : '#4f46e5',
     },
   })
 }
