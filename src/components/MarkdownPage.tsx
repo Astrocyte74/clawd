@@ -75,12 +75,13 @@ function initializeMermaid(isDark: boolean) {
 // Mermaid Diagram Component
 function MermaidDiagram({ chart, isDark }: { chart: string; isDark: boolean }) {
   const ref = useRef<HTMLDivElement>(null)
-  const renderedRef = useRef<string>(chart + isDark)
+  const renderedRef = useRef<string>('')
 
   useEffect(() => {
+    const key = chart + isDark
     // Skip re-render if chart and theme haven't changed
-    if (renderedRef.current === chart + isDark) return
-    renderedRef.current = chart + isDark
+    if (renderedRef.current === key) return
+    renderedRef.current = key
 
     if (ref.current) {
       const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`
