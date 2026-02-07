@@ -68,13 +68,18 @@ function initializeMermaid(isDark: boolean) {
       lineColor: isDark ? '#94a3b8' : '#475569',
       secondaryColor: isDark ? '#1e1b4b' : '#e0e7ff',
       tertiaryColor: isDark ? '#1e1b4b' : '#f5f5f5',
-      // Improved edge labels for better visibility
-      edgeLabelBackground: isDark ? '#1e1b4b' : '#f1f5f9',
-      edgeLabelColor: isDark ? '#e2e8f0' : '#1e293b',
+      // Improved edge labels for better visibility - larger padding
+      edgeLabelBackground: isDark ? '#6366f1' : '#6366f1',
+      edgeLabelColor: isDark ? '#ffffff' : '#ffffff',
+      edgeLabelFontSize: '14px',
+      edgeLabelPadding: '8px',
       // Better contrast for decision diamonds
       clusterBkg: isDark ? '#1e1b4b' : '#f1f5f9',
       clusterBorder: isDark ? '#6366f1' : '#4f46e5',
     },
+    // Custom font settings for better readability
+    fontFamily: 'system-ui, -apple-system, sans-serif',
+    fontSize: 16,
   })
 }
 
@@ -93,8 +98,24 @@ function MermaidDiagram({ chart, isDark }: { chart: string; isDark: boolean }) {
       try {
         const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`
         const { svg } = await mermaid.render(id, chart)
+        // Add custom CSS for edge labels
+        const css = `
+          <style>
+            .mermaid .edgeLabel {
+              background-color: #6366f1 !important;
+              color: white !important;
+              padding: 4px 8px !important;
+              font-size: 13px !important;
+              font-weight: 500 !important;
+              border-radius: 4px !important;
+            }
+            .mermaid .edgePath {
+              stroke-width: 2px !important;
+            }
+          </style>
+        `
         if (containerRef.current) {
-          containerRef.current.innerHTML = svg
+          containerRef.current.innerHTML = css + svg
         }
       } catch (err) {
         console.error('Mermaid rendering error:', err)
