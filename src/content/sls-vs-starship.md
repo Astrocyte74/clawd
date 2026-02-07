@@ -99,23 +99,25 @@ graph TD
 ### Starship: Fully Reusable System
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '16px'}}}%%
 graph TD
-    B[Super Heavy Booster<br/>33x Raptor engines] -->|Boosts| S[Starship Upper<br/>6x Raptor Vac<br/>100+ passengers]
+    B[<b>Super Heavy Booster</b><br/>33x Raptor engines] -->|Boosts| S[<b>Starship Upper Stage</b><br/>6x Raptor Vacuum<br/>100+ passenger capacity]
 
-    S -->|Separates| B
-    B -->|Returns & Lands| L[Landing Pad<br/>Reusable]
-    S -->|Orbit| O[Earth Orbit]
+    S -->|Stage Separation| B
+    B -->|Returns & Lands| L[Landing Pad]
+    S -->|Earth Orbit| O[Orbit]
 
-    O -->|Optional Refueling| O
-    O -->|Trans-Lunar Injection| Moon[Moon]
-    O -->|Trans-Mars Injection| Mars[Mars]
+    O -->|Refueling| O2[Refueled Starship]
+    O2 -->|Trans-Lunar| Moon[Lunar Surface]
+    O2 -->|Trans-Mars| Mars[Mars Surface]
 
-    style B fill:#ef4444,color:#fff
-    style S fill:#3b82f6,color:#fff
-    style L fill:#10b981,color:#fff
-    style O fill:#8b5cf6,color:#fff
-    style Moon fill:#f59e0b,color:#000
-    style Mars fill:#ec4899,color:#fff
+    style B fill:#ef4444,color:#fff,stroke:#000,stroke-width:2px
+    style S fill:#3b82f6,color:#fff,stroke:#000,stroke-width:2px
+    style L fill:#10b981,color:#fff,stroke:#000,stroke-width:2px
+    style O fill:#8b5cf6,color:#fff,stroke:#000,stroke-width:2px
+    style O2 fill:#8b5cf6,color:#fff,stroke:#000,stroke-width:2px
+    style Moon fill:#f59e0b,color:#000,stroke:#000,stroke-width:2px
+    style Mars fill:#ec4899,color:#fff,stroke:#000,stroke-width:2px
 ```
 
 **Key Characteristics:**
