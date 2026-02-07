@@ -14,20 +14,17 @@ This page tests the Mermaid.js integration with our Markdown system.
 ```mermaid
 graph TD
     A[Start] --> B{Is it working?}
-    B ~~~| Yes |~~~ C[Great!]
-    B ~~~| No |~~~ D[Debug]
+    B -->|Yes| C[Great!]
+    B -->|No| D[Debug]
     D --> B
     C --> E[Success!]
 
-    style A fill:#6366f1,stroke:#818cf8,color:#fff
-    style C fill:#10b981,stroke:#34d399,color:#fff
-    style D fill:#f59e0b,stroke:#fbbf24,color:#fff
-    style E fill:#10b981,stroke:#34d399,color:#fff
-    style B fill:#8b5cf6,stroke:#a78bfa,color:#fff
-    linkStyle 0 stroke:#94a3b8,stroke-width:3px
-    linkStyle 1 stroke:#94a3b8,stroke-width:3px
-    linkStyle 2 stroke:#94a3b8,stroke-width:3px
-    linkStyle 3 stroke:#94a3b8,stroke-width:3px
+    style A fill:#6366f1,stroke:#818cf8,color:#fff,stroke-width:3px
+    style C fill:#10b981,stroke:#34d399,color:#fff,stroke-width:3px
+    style D fill:#f59e0b,stroke:#fbbf24,color:#fff,stroke-width:3px
+    style E fill:#10b981,stroke:#34d399,color:#fff,stroke-width:3px
+    style B fill:#8b5cf6,stroke:#a78bfa,color:#fff,stroke-width:3px
+    linkStyle all stroke:#94a3b8,stroke-width:3px
 ```
 
 ## Sequence Diagram
