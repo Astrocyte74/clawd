@@ -322,11 +322,18 @@ npm run build
 # 3. Preview locally (optional)
 npm run preview
 
-# 4. Deploy (git push triggers GitHub Actions)
+# 4. Deploy (git push triggers Render auto-deploy)
 git add -A
 git commit -m "feat: your message here"
 git push origin main
 ```
+
+**Deployment happens automatically via Render:**
+- Render watches your GitHub repository
+- On push to `main` branch, Render automatically:
+  1. Runs `npm run build`
+  2. Deploys the `dist/` folder
+  3. Updates https://clawd-hub.onrender.com/
 
 **If git commands fail with "embedded git repository" errors:**
 1. You are in the wrong directory (probably `/Users/markdarby16/clawd/`)
@@ -334,11 +341,26 @@ git push origin main
 3. Run: `git status` to verify
 4. Try again
 
-## GitHub Pages Configuration
+## Deployment Configuration
 
-- **Base URL**: `/clawd/`
-- **BrowserRouter basename**: `/clawd`
-- **Deploy location**: https://astrocyte74.github.io/clawd/
+### Render Pages (Current)
+- **Base URL**: `/` (root path)
+- **BrowserRouter basename**: `/`
+- **Deploy location**: https://clawd-hub.onrender.com/
+- **Deployment**: Automatic on git push to main branch
+- **Build Command**: `npm run build`
+- **Publish Directory**: `dist/`
+
+### GitHub Pages (Previous)
+- **Base URL**: Was `/clawd/`
+- **BrowserRouter basename**: Was `/clawd`
+- **Note**: Migrated to Render Pages for simpler deployment (no subdirectory path handling needed)
+
+### Why Render Pages?
+- ✅ No subdirectory base path needed (root URL `/` works)
+- ✅ Automatic deployments on git push
+- ✅ No 404.html redirect workarounds needed for client-side routing
+- ✅ Simpler configuration overall
 
 ## Common Patterns
 
