@@ -2,15 +2,35 @@ export interface Project {
   id: string
   title: string
   description: string
+  blurb: string // One-line description for cards
   category: 'home-renovation' | 'ai-research' | 'recipes' | 'demo' | 'guide'
   categoryLabel: string
   categoryIcon: string
   href: string
   date: string
+  updatedAt: Date // For "What's New" sorting
   metadata?: Array<{
     icon: string
     label: string
   }>
+}
+
+// Helper: Get blurb from first line of description
+export function getBlurb(description: string): string {
+  const firstLine = description.split('.')[0]
+  return firstLine.length > 60 ? firstLine.substring(0, 57) + '...' : firstLine + '.'
+}
+
+// Helper: Get "Updated X days ago" text
+export function getUpdatedText(dateString: string): string {
+  const date = new Date(dateString)
+  const now = new Date()
+  const daysAgo = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24))
+  if (daysAgo === 0) return 'Updated today'
+  if (daysAgo === 1) return 'Updated yesterday'
+  if (daysAgo < 7) return `Updated ${daysAgo} days ago`
+  if (daysAgo < 30) return `Updated ${Math.floor(daysAgo / 7)} weeks ago`
+  return `Updated ${date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`
 }
 
 export const projects: Project[] = [
@@ -18,7 +38,9 @@ export const projects: Project[] = [
     id: 'basement-flooring',
     title: 'Basement Flooring Plan',
     description: 'Complete flooring specification and material calculation for a 311 sq ft multi-purpose basement room featuring Tennessee Bluegrass LVP with acoustic backing.',
+    blurb: 'Complete flooring spec for 311 sq ft basement with LVP.',
     category: 'home-renovation',
+    updatedAt: new Date('2026-01-30'),
     categoryLabel: 'Home Improvement',
     categoryIcon: '🏠',
     href: 'flooring-basement/',
@@ -34,7 +56,9 @@ export const projects: Project[] = [
     id: 'astronomical-events',
     title: 'Astronomical Events 2025',
     description: 'Your guide to celestial events visible from Carstairs, Alberta. Features meteor showers, lunar eclipses, planetary conjunctions, and stargazing tips.',
+    blurb: 'Guide to celestial events visible from Alberta.',
     category: 'ai-research',
+    updatedAt: new Date('2026-01-30'),
     categoryLabel: 'Astronomy',
     categoryIcon: '🌌',
     href: 'astronomical-events/',
@@ -54,7 +78,9 @@ export const projects: Project[] = [
     id: 'tofu-recipes',
     title: 'Creative Tofu Recipes',
     description: 'Delicious, protein-packed plant-based recipes featuring crispy maple-Sriracha tofu, Korean BBQ bowls, coconut curry, and smoky BLT sandwiches.',
+    blurb: '4 delicious plant-based tofu recipes with bold flavors.',
     category: 'recipes',
+    updatedAt: new Date('2026-01-30'),
     categoryLabel: 'Cooking',
     categoryIcon: '🥢',
     href: 'tofu-recipes/',
@@ -74,7 +100,9 @@ export const projects: Project[] = [
     id: 'ai-news-jan2026',
     title: 'AI News & Updates - January 2026',
     description: 'Latest developments in LLMs: Moonshot K2.5 (1T params), DeepSeek R1 (cost revolution), Arcee Trinity (400B), and market leaders Claude Opus 4.5, Gemini 3 Pro, and GPT-5.2.',
+    blurb: 'Latest LLM developments: Moonshot K2.5, DeepSeek R1, Claude Opus 4.5.',
     category: 'ai-research',
+    updatedAt: new Date('2026-01-30'),
     categoryLabel: 'AI Research',
     categoryIcon: '🤖',
     href: 'ai-news-jan2026/',
@@ -94,7 +122,9 @@ export const projects: Project[] = [
     id: 'demo-features',
     title: 'Feature Demo: Motion + Markdown',
     description: 'Interactive showcase of new Motion animations and react-markdown rendering capabilities. See smooth entrance effects, hover states, and formatted content rendering.',
+    blurb: 'Interactive showcase: Motion animations + Markdown rendering.',
     category: 'demo',
+    updatedAt: new Date('2026-01-31'),
     categoryLabel: 'Demo',
     categoryIcon: '🎨',
     href: 'demo-features/',
@@ -114,7 +144,9 @@ export const projects: Project[] = [
     id: 'markdown-demo',
     title: 'Markdown Page Template',
     description: 'Demo showing how AI agents can create pages using only Markdown files. Just write .md content and it renders beautifully with frontmatter support.',
+    blurb: 'Demo: AI agents create pages with just Markdown files.',
     category: 'demo',
+    updatedAt: new Date('2026-01-31'),
     categoryLabel: 'Demo',
     categoryIcon: '📄',
     href: 'markdown-demo/',
@@ -134,7 +166,9 @@ export const projects: Project[] = [
     id: 'coding-frameworks-guide',
     title: 'Coding Frameworks Guide',
     description: 'Practical comparison of React, Next.js, Vite, and shadcn/ui. Learn when to use each tool with code examples, project structures, and real-world use cases.',
+    blurb: 'React, Next.js, Vite, shadcn/ui: when to use each tool.',
     category: 'guide',
+    updatedAt: new Date('2026-01-31'),
     categoryLabel: 'Guide',
     categoryIcon: '📚',
     href: 'coding-frameworks-guide/',
@@ -162,7 +196,9 @@ export const projects: Project[] = [
     id: 'space-exploration-guide',
     title: 'Space Exploration Guide',
     description: 'Understanding NASA Artemis, SpaceX Starship, and the race to the Moon and Mars. Learn rocket tech, timelines, and how they work together.',
+    blurb: 'NASA Artemis, SpaceX Starship, and the race to Mars.',
     category: 'guide',
+    updatedAt: new Date('2026-02-02'),
     categoryLabel: 'Guide',
     categoryIcon: '🚀',
     href: 'space-exploration-guide/',

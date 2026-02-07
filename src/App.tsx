@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom'
 import { Header } from './components/Header'
 import { NavSidebar, type NavItem } from './components/NavSidebar'
-import { ProjectsView } from './components/ProjectsView'
+import { LandingPage } from './components/LandingPage'
 import FlooringBasementPage from './pages/flooring-basement'
 import AstronomicalEventsPage from './pages/astronomical-events'
 import TofuRecipesPage from './pages/tofu-recipes'
@@ -50,7 +50,7 @@ function DashboardLayout({ activeNav, setActiveNav, currentTheme, setCurrentThem
               </p>
             </div>
           ) : (
-            <ProjectsView activeNav={activeNav} />
+            <LandingPage />
           )}
         </div>
       </div>
