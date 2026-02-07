@@ -579,6 +579,76 @@ graph TD
 
 **Note:** Styling is handled automatically - diagrams adapt to light/dark mode with proper contrast and padding.
 
+#### ✅ Mermaid Best Practices for Readable Diagrams
+
+**Critical Tips Discovered Through Testing:**
+
+1. **Always set base font size** — Prevents tiny, unreadable text
+   ```mermaid
+   %%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '16px'}}}%%
+   graph TD
+       A[Node] --> B[Node]
+   ```
+
+2. **Use top-to-bottom layout** (`graph TD`) by default
+   - ✅ `graph TD` — Better for most diagrams, more readable on mobile
+   - ⚠️ `graph LR` — Only for wide/timeline diagrams, can make text too small
+
+3. **Add stroke borders** for better node definition
+   ```mermaid
+   style A fill:#3b82f6,color:#fff,stroke:#000,stroke-width:2px
+   ```
+
+4. **Use `<b>` tags** for key component names
+   ```mermaid
+   A[<b>Component Name</b><br/>Description text]
+   ```
+
+5. **Avoid subgraphs** unless necessary — They add unnecessary complexity
+   - ✅ Simple flow: Just nodes and edges
+   - ⚠️ Subgraphs: Only for grouping related sections
+
+6. **Simplify edge labels** — Long labels shrink the diagram
+   - ✅ `-->|Boosts|` (short)
+   - ⚠️ `-->|Propulsion boost phase|` (too long)
+
+7. **Split complex nodes** — Instead of one crowded node, use two
+   ```mermaid
+   ❌ A[Process Step 1<br/>Process Step 2<br/>Process Step 3]
+   ✅ A[Step 1] --> B[Step 2] --> C[Step 3]
+   ```
+
+8. **Color coding guide** (semantic colors):
+   ```mermaid
+   style Start fill:#10b981,color:#fff     # Green (success/start)
+   style Process fill:#3b82f6,color:#fff    # Blue (primary)
+   style Warning fill:#f59e0b,color:#000    # Orange (warning)
+   style Error fill:#ef4444,color:#fff      # Red (error/end)
+   style Neutral fill:#8b5cf6,color:#fff    # Purple (secondary)
+   ```
+
+**Readable Mermaid Template:**
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '16px'}}}%%
+graph TD
+    A[<b>Component A</b><br/>Description] -->|Action| B[<b>Component B</b><br/>Description]
+
+    style A fill:#3b82f6,color:#fff,stroke:#000,stroke-width:2px
+    style B fill:#10b981,color:#fff,stroke:#000,stroke-width:2px
+```
+
+**Before vs After:**
+- ❌ Too small: `graph LR` with `<br/>` line breaks, no font size set
+- ✅ Readable: `graph TD` with `%%{init: ...}%%`, bold text, stroke borders
+
+**Testing Checklist:**
+- [ ] Font size is set to 16px or larger
+- [ ] Text is readable on mobile (test narrow viewport)
+- [ ] Colors have good contrast
+- [ ] Node labels are descriptive but not verbose
+- [ ] Edge labels are short (2-3 words max)
+- [ ] Diagram flows logically top-to-bottom or left-to-right
+
 **Supported diagram types:**
 - Flowcharts: `graph TD` or `graph LR`
 - Sequence diagrams: `sequenceDiagram`
