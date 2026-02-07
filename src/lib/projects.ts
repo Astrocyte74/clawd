@@ -43,7 +43,7 @@ export const projects: Project[] = [
     updatedAt: new Date('2026-01-30'),
     categoryLabel: 'Home Improvement',
     categoryIcon: '🏠',
-    href: 'flooring-basement/',
+    href: '/flooring-basement',
     date: 'Jan 30, 2026',
     metadata: [
       {
@@ -61,7 +61,7 @@ export const projects: Project[] = [
     updatedAt: new Date('2026-01-30'),
     categoryLabel: 'Astronomy',
     categoryIcon: '🌌',
-    href: 'astronomical-events/',
+    href: '/astronomical-events',
     date: 'Jan 30, 2026',
     metadata: [
       {
@@ -83,7 +83,7 @@ export const projects: Project[] = [
     updatedAt: new Date('2026-01-30'),
     categoryLabel: 'Cooking',
     categoryIcon: '🥢',
-    href: 'tofu-recipes/',
+    href: '/tofu-recipes',
     date: 'Jan 30, 2026',
     metadata: [
       {
@@ -105,7 +105,7 @@ export const projects: Project[] = [
     updatedAt: new Date('2026-01-30'),
     categoryLabel: 'AI Research',
     categoryIcon: '🤖',
-    href: 'ai-news-jan2026/',
+    href: '/ai-news-jan2026',
     date: 'Jan 30, 2026',
     metadata: [
       {
@@ -127,7 +127,7 @@ export const projects: Project[] = [
     updatedAt: new Date('2026-01-31'),
     categoryLabel: 'Demo',
     categoryIcon: '🎨',
-    href: 'demo-features/',
+    href: '/demo-features',
     date: 'Jan 31, 2026',
     metadata: [
       {
@@ -149,7 +149,7 @@ export const projects: Project[] = [
     updatedAt: new Date('2026-01-31'),
     categoryLabel: 'Demo',
     categoryIcon: '📄',
-    href: 'markdown-demo/',
+    href: '/markdown-demo',
     date: 'Jan 31, 2026',
     metadata: [
       {
@@ -171,7 +171,7 @@ export const projects: Project[] = [
     updatedAt: new Date('2026-01-31'),
     categoryLabel: 'Guide',
     categoryIcon: '📚',
-    href: 'coding-frameworks-guide/',
+    href: '/coding-frameworks-guide',
     date: 'Jan 31, 2026',
     metadata: [
       {
@@ -201,7 +201,7 @@ export const projects: Project[] = [
     updatedAt: new Date('2026-02-02'),
     categoryLabel: 'Guide',
     categoryIcon: '🚀',
-    href: 'space-exploration-guide/',
+    href: '/space-exploration-guide',
     date: 'Feb 2, 2026',
     metadata: [
       {
@@ -227,7 +227,7 @@ export const projects: Project[] = [
     updatedAt: new Date('2026-02-07'),
     categoryLabel: 'Space Analysis',
     categoryIcon: '🔬',
-    href: 'sls-vs-starship/',
+    href: '/sls-vs-starship',
     date: 'Feb 7, 2026',
     metadata: [
       {
@@ -257,7 +257,7 @@ export const projects: Project[] = [
     updatedAt: new Date('2026-02-07'),
     categoryLabel: 'Demo',
     categoryIcon: '🎨',
-    href: 'mermaid-demo/',
+    href: '/mermaid-demo',
     date: 'Feb 7, 2026',
     metadata: [
       {
