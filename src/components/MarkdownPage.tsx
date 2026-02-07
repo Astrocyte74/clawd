@@ -101,7 +101,6 @@ function MermaidDiagram({ chart, isDark }: { chart: string; isDark: boolean }) {
         // Add custom CSS for edge labels and lines (theme-aware)
         const strokeColor = isDark ? '#cbd5e1' : '#334155'
         const edgeLabelBg = isDark ? '#4f46e5' : '#4f46e5'
-        const edgeLabelText = '#ffffff'
         const css = `
           <style>
             /* Ensure our styles apply to the rendered SVG we inject */
@@ -109,13 +108,20 @@ function MermaidDiagram({ chart, isDark }: { chart: string; isDark: boolean }) {
               font-family: system-ui, -apple-system, sans-serif !important;
             }
 
-            /* Edge labels: increase contrast and padding */
-            .mermaid-diagram .edgeLabel,
-            .mermaid-diagram .edgeLabel * {
+            /* Edge labels: background and container styling */
+            .mermaid-diagram .edgeLabel {
               background-color: ${edgeLabelBg} !important;
-              color: ${edgeLabelText} !important;
-              fill: ${edgeLabelText} !important;
               padding: 6px 12px !important;
+            }
+
+            /* Edge label text - target all text elements inside */
+            .mermaid-diagram .edgeLabel span,
+            .mermaid-diagram .edgeLabel div,
+            .mermaid-diagram .edgeLabel p,
+            .mermaid-diagram .edgeLabel text,
+            .mermaid-diagram .edgeLabel tspan {
+              color: #ffffff !important;
+              fill: #ffffff !important;
               font-size: 14px !important;
               font-weight: 600 !important;
             }
