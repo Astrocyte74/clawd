@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus, vs } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import { useState, useEffect, useRef, memo } from 'react'
+import { useState, useEffect, useRef, memo, useCallback } from 'react'
 import { motion } from "motion/react"
 import { Header } from "./Header"
 import { getStoredTheme, type ThemeKey, type ColorMode, initializeColorMode } from "../lib/themes"
@@ -74,31 +74,46 @@ function initializeMermaid(isDark: boolean) {
 
 // Mermaid Diagram Component
 function MermaidDiagram({ chart, isDark }: { chart: string; isDark: boolean }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const renderedRef = useRef<string>('')
+  const [svgContent, setSvgContent] = useState<string>('')
+  const [error, setError] = useState<string>('')
+  const chartKeyRef = useRef<string>('')
 
   useEffect(() => {
     const key = chart + isDark
     // Skip re-render if chart and theme haven't changed
-    if (renderedRef.current === key) return
-    renderedRef.current = key
+    if (chartKeyRef.current === key) return
+    chartKeyRef.current = key
 
-    if (ref.current) {
-      const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`
-      mermaid.render(id, chart).then((result) => {
-        if (ref.current) {
-          ref.current.innerHTML = result.svg
-        }
-      }).catch((error) => {
-        console.error('Mermaid rendering error:', error)
-        if (ref.current) {
-          ref.current.innerHTML = `<pre class="text-red-500">Error rendering diagram: ${error.message}</pre>`
-        }
-      })
+    async function renderMermaid() {
+      try {
+        const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`
+        const { svg } = await mermaid.render(id, chart)
+        setSvgContent(svg)
+        setError('')
+      } catch (err) {
+        console.error('Mermaid rendering error:', err)
+        setError(err instanceof Error ? err.message : 'Unknown error')
+        setSvgContent('')
+      }
     }
+
+    renderMermaid()
   }, [chart, isDark])
 
-  return <div ref={ref} className="mermaid-diagram flex justify-center my-6" />
+  if (error) {
+    return <pre className="text-red-500 my-6">Error rendering diagram: {error}</pre>
+  }
+
+  if (!svgContent) {
+    return <div className="mermaid-diagram flex justify-center my-6 text-muted-foreground">Loading diagram...</div>
+  }
+
+  return (
+    <div
+      className="mermaid-diagram flex justify-center my-6"
+      dangerouslySetInnerHTML={{ __html: svgContent }}
+    />
+  )
 }
 
 // Memoize to prevent re-renders when parent component updates (e.g., scroll progress)
