@@ -98,25 +98,42 @@ function MermaidDiagram({ chart, isDark }: { chart: string; isDark: boolean }) {
       try {
         const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`
         const { svg } = await mermaid.render(id, chart)
-        // Add custom CSS for edge labels and lines
+        // Add custom CSS for edge labels and lines (theme-aware)
+        const strokeColor = isDark ? '#cbd5e1' : '#334155'
+        const edgeLabelBg = isDark ? '#4f46e5' : '#4f46e5'
+        const edgeLabelText = '#ffffff'
         const css = `
           <style>
-            .mermaid .edgeLabel {
-              background-color: #6366f1 !important;
-              color: white !important;
+            /* Ensure our styles apply to the rendered SVG we inject */
+            .mermaid-diagram svg {
+              font-family: system-ui, -apple-system, sans-serif !important;
+            }
+
+            /* Edge labels: increase contrast and padding */
+            .mermaid-diagram .edgeLabel,
+            .mermaid-diagram .edgeLabel * {
+              background-color: ${edgeLabelBg} !important;
+              color: ${edgeLabelText} !important;
+              fill: ${edgeLabelText} !important;
               padding: 6px 12px !important;
               font-size: 14px !important;
               font-weight: 600 !important;
-              border-radius: 6px !important;
-              min-width: 40px !important;
-              text-align: center !important;
             }
-            .mermaid .edgePath path, .mermaid .edgePath .path, .mermaid path.edgePath, .mermaid .flowchart-link {
+
+            /* Lines / arrows: boost contrast and thickness */
+            .mermaid-diagram .edgePath path,
+            .mermaid-diagram .edgePath .path,
+            .mermaid-diagram path.edgePath,
+            .mermaid-diagram .flowchart-link,
+            .mermaid-diagram .link {
               stroke-width: 3px !important;
-              stroke: #94a3b8 !important;
+              stroke: ${strokeColor} !important;
+              opacity: 1 !important;
             }
-            .mermaid flowchart {
-              font-family: system-ui, sans-serif !important;
+
+            .mermaid-diagram marker path {
+              fill: ${strokeColor} !important;
+              opacity: 1 !important;
             }
           </style>
         `
@@ -134,7 +151,7 @@ function MermaidDiagram({ chart, isDark }: { chart: string; isDark: boolean }) {
     renderMermaid()
   }, [chart, isDark])
 
-  return <div ref={containerRef} className="mermaid-diagram flex justify-center my-6" />
+  return <div ref={containerRef} className="mermaid-diagram mermaid flex justify-center my-6" />
 }
 
 // Memoize to prevent re-renders when parent component updates (e.g., scroll progress)
