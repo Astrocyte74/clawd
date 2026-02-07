@@ -341,3 +341,15 @@
     @apply bg-background text-foreground;
     }
 }
+
+/* Mermaid diagram styles */
+.mermaid-diagram {
+  background-color: var(--muted);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+}
+.mermaid-diagram svg {
+  max-width: 100%;
+  height: auto;
+}

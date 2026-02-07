@@ -247,5 +247,31 @@ export const projects: Project[] = [
         label: 'Mars'
       }
     ]
+  },
+  {
+    id: 'mermaid-demo',
+    title: 'Mermaid Diagram Demo',
+    description: 'Testing Mermaid.js integration with Markdown for beautiful, responsive diagrams.',
+    blurb: 'Test page for Mermaid diagram rendering in Markdown.',
+    category: 'demo',
+    updatedAt: new Date('2026-02-07'),
+    categoryLabel: 'Demo',
+    categoryIcon: '🎨',
+    href: 'mermaid-demo/',
+    date: 'Feb 7, 2026',
+    metadata: [
+      {
+        icon: '📊',
+        label: 'Flowcharts'
+      },
+      {
+        icon: '🔄',
+        label: 'Sequence diagrams'
+      },
+      {
+        icon: '✨',
+        label: 'Interactive'
+      }
+    ]
   }
 ]

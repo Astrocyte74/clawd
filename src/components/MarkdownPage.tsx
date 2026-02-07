@@ -4,10 +4,11 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus, vs } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from "motion/react"
 import { Header } from "./Header"
 import { getStoredTheme, type ThemeKey, type ColorMode, initializeColorMode } from "../lib/themes"
+import mermaid from 'mermaid'
 
 interface MarkdownPageProps {
   content: string
@@ -52,6 +53,48 @@ function generateId(text: string): string {
     .substring(0, 50)
 }
 
+// Initialize Mermaid with theme
+function initializeMermaid(isDark: boolean) {
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: isDark ? 'dark' : 'default',
+    securityLevel: 'loose',
+    themeVariables: {
+      darkMode: isDark,
+      background: isDark ? '#1a1a1a' : '#ffffff',
+      primaryColor: isDark ? '#bb86fc' : '#6200ee',
+      primaryTextColor: isDark ? '#ffffff' : '#000000',
+      primaryBorderColor: isDark ? '#bb86fc' : '#6200ee',
+      lineColor: isDark ? '#e0e0e0' : '#333333',
+      secondaryColor: isDark ? '#3700b3' : '#03dac6',
+      tertiaryColor: isDark ? '#3700b3' : '#f5f5f5',
+    },
+  })
+}
+
+// Mermaid Diagram Component
+function MermaidDiagram({ chart, isDark }: { chart: string; isDark: boolean }) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (ref.current) {
+      const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`
+      mermaid.render(id, chart).then((result) => {
+        if (ref.current) {
+          ref.current.innerHTML = result.svg
+        }
+      }).catch((error) => {
+        console.error('Mermaid rendering error:', error)
+        if (ref.current) {
+          ref.current.innerHTML = `<pre class="text-red-500">Error rendering diagram: ${error.message}</pre>`
+        }
+      })
+    }
+  }, [chart, isDark])
+
+  return <div ref={ref} className="mermaid-diagram flex justify-center my-6" />
+}
+
 /**
  * Generic Markdown Page Component
  *
@@ -81,11 +124,13 @@ export function MarkdownPage({ content, title, description }: MarkdownPageProps)
   const currentMode = getColorMode()
   const isDark = currentMode === 'dark'
 
+  // Initialize Mermaid on mount and when theme changes
   useEffect(() => {
     if (typeof window !== 'undefined') {
       initializeColorMode()
+      initializeMermaid(isDark)
     }
-  }, [])
+  }, [isDark])
 
   // Parse callouts on mount
   useEffect(() => {
@@ -235,10 +280,18 @@ export function MarkdownPage({ content, title, description }: MarkdownPageProps)
                 components={{
                   code({ node, inline, className, children, ...props }: any) {
                     const match = /language-(\w+)/.exec(className || '')
+                    const language = match?.[1]
+
+                    // Handle Mermaid diagrams
+                    if (!inline && language === 'mermaid') {
+                      return <MermaidDiagram chart={String(children).replace(/\n$/, '')} isDark={isDark} />
+                    }
+
+                    // Handle syntax highlighting for other languages
                     return !inline && match ? (
                       <SyntaxHighlighter
                         style={isDark ? vscDarkPlus : vs}
-                        language={match[1]}
+                        language={language}
                         PreTag="div"
                         className="rounded-lg"
                         {...props}

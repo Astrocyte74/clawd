@@ -12,6 +12,7 @@ import MarkdownDemoPage from './pages/markdown-demo'
 import CodingFrameworksGuidePage from './pages/coding-frameworks-guide'
 import SpaceExplorationGuidePage from './pages/space-exploration-guide'
 import SlsVsStarshipPage from './pages/sls-vs-starship'
+import MermaidDemoPage from './pages/mermaid-demo'
 import { getStoredTheme, initializeColorMode, type ThemeKey, type ColorMode } from './lib/themes'
 
 function DashboardLayout({ activeNav, setActiveNav, currentTheme, setCurrentTheme, currentMode, setCurrentMode }: {
@@ -147,6 +148,7 @@ function AppRouter({ activeNav, setActiveNav, currentTheme, setCurrentTheme, cur
         <Route path="/coding-frameworks-guide" element={<CodingFrameworksGuidePage />} />
         <Route path="/space-exploration-guide" element={<SpaceExplorationGuidePage />} />
         <Route path="/sls-vs-starship" element={<SlsVsStarshipPage />} />
+        <Route path="/mermaid-demo" element={<MermaidDemoPage />} />
       </Routes>
     )
 }
