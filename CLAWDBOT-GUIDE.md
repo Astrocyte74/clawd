@@ -586,6 +586,8 @@ sequenceDiagram
 
 **Demo:** See `/mermaid-demo` for live examples.
 
+**Implementation Note:** Mermaid diagrams use a ref-based rendering approach to prevent disappearing during scroll. The SVG is injected directly into the DOM and preserved across re-renders. If you modify `MarkdownPage.tsx`, ensure the `MermaidDiagram` component maintains this pattern to avoid re-render issues.
+
 ### Frontmatter Fields (Optional)
 
 ```yaml
