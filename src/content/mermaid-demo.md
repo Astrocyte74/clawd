@@ -19,12 +19,11 @@ graph TD
     D --> B
     C --> E[Success!]
 
-    style A fill:#6366f1,stroke:#818cf8,color:#fff,stroke-width:3px
-    style C fill:#10b981,stroke:#34d399,color:#fff,stroke-width:3px
-    style D fill:#f59e0b,stroke:#fbbf24,color:#fff,stroke-width:3px
-    style E fill:#10b981,stroke:#34d399,color:#fff,stroke-width:3px
-    style B fill:#8b5cf6,stroke:#a78bfa,color:#fff,stroke-width:3px
-    linkStyle all stroke:#94a3b8,stroke-width:3px
+    style A fill:#6366f1,stroke:#818cf8,color:#fff
+    style C fill:#10b981,stroke:#34d399,color:#fff
+    style D fill:#f59e0b,stroke:#fbbf24,color:#fff
+    style E fill:#10b981,stroke:#34d399,color:#fff
+    style B fill:#8b5cf6,stroke:#a78bfa,color:#fff
 ```
 
 ## Sequence Diagram
