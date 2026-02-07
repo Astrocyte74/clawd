@@ -135,23 +135,24 @@ export function MarkdownPage({ content, title, description }: MarkdownPageProps)
   const [headings, setHeadings] = useState<Heading[]>([])
   const [activeHeading, setActiveHeading] = useState<string>('')
   const [callouts, setCallouts] = useState<{ type: string; content: string }[]>([])
+  const [isDark, setIsDark] = useState(true) // Default to dark
+  const [currentMode, setCurrentMode] = useState<ColorMode>('dark') // Default to dark
   const currentTheme = getStoredTheme() as ThemeKey
 
-  // Get color mode from localStorage
-  const getColorMode = (): ColorMode => {
+  // Get color mode from localStorage - only run once on mount
+  useEffect(() => {
     if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('clawd:colorMode')
-      if (stored === 'light' || stored === 'dark') return stored
+      initializeColorMode()
+      const stored = localStorage.getItem('clawd:colorMode') as ColorMode
+      const mode = stored === 'light' || stored === 'dark' ? stored : 'dark'
+      setIsDark(mode === 'dark')
+      setCurrentMode(mode)
     }
-    return 'dark'
-  }
-  const currentMode = getColorMode()
-  const isDark = currentMode === 'dark'
+  }, [])
 
   // Initialize Mermaid on mount and when theme changes
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      initializeColorMode()
       initializeMermaid(isDark)
     }
   }, [isDark])
