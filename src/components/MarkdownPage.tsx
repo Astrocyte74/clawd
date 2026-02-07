@@ -74,46 +74,34 @@ function initializeMermaid(isDark: boolean) {
 
 // Mermaid Diagram Component
 function MermaidDiagram({ chart, isDark }: { chart: string; isDark: boolean }) {
-  const [svgContent, setSvgContent] = useState<string>('')
-  const [error, setError] = useState<string>('')
-  const chartKeyRef = useRef<string>('')
+  const containerRef = useRef<HTMLDivElement>(null)
+  const renderedKeyRef = useRef<string>('')
 
   useEffect(() => {
-    const key = chart + isDark
-    // Skip re-render if chart and theme haven't changed
-    if (chartKeyRef.current === key) return
-    chartKeyRef.current = key
+    const key = `${chart}-${isDark}`
+    // Skip if already rendered with same chart and theme
+    if (renderedKeyRef.current === key || !containerRef.current) return
+    renderedKeyRef.current = key
 
     async function renderMermaid() {
       try {
         const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`
         const { svg } = await mermaid.render(id, chart)
-        setSvgContent(svg)
-        setError('')
+        if (containerRef.current) {
+          containerRef.current.innerHTML = svg
+        }
       } catch (err) {
         console.error('Mermaid rendering error:', err)
-        setError(err instanceof Error ? err.message : 'Unknown error')
-        setSvgContent('')
+        if (containerRef.current) {
+          containerRef.current.innerHTML = `<pre class="text-red-500">Error rendering diagram: ${err instanceof Error ? err.message : 'Unknown error'}</pre>`
+        }
       }
     }
 
     renderMermaid()
   }, [chart, isDark])
 
-  if (error) {
-    return <pre className="text-red-500 my-6">Error rendering diagram: {error}</pre>
-  }
-
-  if (!svgContent) {
-    return <div className="mermaid-diagram flex justify-center my-6 text-muted-foreground">Loading diagram...</div>
-  }
-
-  return (
-    <div
-      className="mermaid-diagram flex justify-center my-6"
-      dangerouslySetInnerHTML={{ __html: svgContent }}
-    />
-  )
+  return <div ref={containerRef} className="mermaid-diagram flex justify-center my-6" />
 }
 
 // Memoize to prevent re-renders when parent component updates (e.g., scroll progress)
