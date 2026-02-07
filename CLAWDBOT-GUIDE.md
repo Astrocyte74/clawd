@@ -550,6 +550,35 @@ import YourPage from './pages/your-page'
 
 **Mermaid.js is integrated for beautiful, responsive diagrams.**
 
+#### Quick Reference for AI Agents
+
+**To create a Mermaid diagram, simply add a `mermaid` code block to any Markdown file:**
+
+````markdown
+```mermaid
+graph TD
+    A[Start] --> B[End]
+```
+````
+
+**Most common diagram types:**
+
+| Type | Syntax | Use For |
+|------|--------|---------|
+| Flowchart | `graph TD` or `graph LR` | Processes, decisions, workflows |
+| Sequence | `sequenceDiagram` | Interactions between entities over time |
+| Timeline | `graph LR` | Linear progression, dates |
+| State | `stateDiagram-v2` | State machines, status flows |
+
+**Tips for better diagrams:**
+- Keep it simple - complex diagrams are hard to read
+- Use descriptive node names: `A[User Login]` not `A[Login]`
+- Add labels to arrows: `B -->|Yes| C[Success]`
+- Use custom colors for emphasis: `style A fill:#10b981,stroke:#34d399,color:#fff`
+- Test at `/mermaid-demo` before committing
+
+**Note:** Styling is handled automatically - diagrams adapt to light/dark mode with proper contrast and padding.
+
 **Supported diagram types:**
 - Flowcharts: `graph TD` or `graph LR`
 - Sequence diagrams: `sequenceDiagram`
