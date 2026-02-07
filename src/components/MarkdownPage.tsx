@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus, vs } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import { useState, useEffect, useRef, memo } from 'react'
+import { useState, useEffect, useRef, memo, useMemo } from 'react'
 import { motion } from "motion/react"
 import { Header } from "./Header"
 import { getStoredTheme, type ThemeKey, type ColorMode, initializeColorMode } from "../lib/themes"
@@ -117,7 +117,9 @@ function MermaidDiagram({ chart, isDark }: { chart: string; isDark: boolean }) {
 }
 
 // Memoize to prevent re-renders when parent component updates (e.g., scroll progress)
-const MemoizedMermaidDiagram = memo(MermaidDiagram)
+const MemoizedMermaidDiagram = memo(MermaidDiagram, (prevProps, nextProps) => {
+  return prevProps.chart === nextProps.chart && prevProps.isDark === nextProps.isDark
+})
 
 /**
  * Generic Markdown Page Component
@@ -244,6 +246,83 @@ export function MarkdownPage({ content, title, description }: MarkdownPageProps)
     }
   }
 
+  // Memoize the components object to prevent ReactMarkdown re-renders
+  const markdownComponents = useMemo(() => ({
+    code({ node, inline, className, children, ...props }: any) {
+      const match = /language-(\w+)/.exec(className || '')
+      const language = match?.[1]
+
+      // Handle Mermaid diagrams
+      if (!inline && language === 'mermaid') {
+        return <MemoizedMermaidDiagram chart={String(children).replace(/\n$/, '')} isDark={isDark} />
+      }
+
+      // Handle syntax highlighting for other languages
+      return !inline && match ? (
+        <SyntaxHighlighter
+          style={isDark ? vscDarkPlus : vs}
+          language={language}
+          PreTag="div"
+          className="rounded-lg"
+          {...props}
+        >
+          {String(children).replace(/\n$/, '')}
+        </SyntaxHighlighter>
+      ) : (
+        <code className={className} {...props}>
+          {children}
+        </code>
+      )
+    },
+    h1({ children }: any) {
+      const text = children?.toString() || ''
+      const id = generateId(text)
+      return <h1 id={id}>{children}</h1>
+    },
+    h2({ children }: any) {
+      const text = children?.toString() || ''
+      const id = generateId(text)
+      return (
+        <h2 id={id} className="scroll-mt-20">
+          <a href={`#${id}`} className="group">
+            {children}
+            <span className="opacity-0 group-hover:opacity-100 ml-2 text-primary text-sm">#</span>
+          </a>
+        </h2>
+      )
+    },
+    h3({ children }: any) {
+      const text = children?.toString() || ''
+      const id = generateId(text)
+      return (
+        <h3 id={id} className="scroll-mt-20">
+          <a href={`#${id}`} className="group">
+            {children}
+            <span className="opacity-0 group-hover:opacity-100 ml-2 text-primary text-sm">#</span>
+          </a>
+        </h3>
+      )
+    },
+    blockquote({ children }: any) {
+      const content = children?.toString() || ''
+      const calloutMatch = callouts.find(c => content.includes(c.content))
+
+      if (calloutMatch) {
+        return (
+          <div className={`prose-callout ${calloutMatch.type.toLowerCase()}`}>
+            <div className="prose-callout-title">
+              {getCalloutIcon(calloutMatch.type)}
+              {getCalloutLabel(calloutMatch.type)}
+            </div>
+            <div>{calloutMatch.content}</div>
+          </div>
+        )
+      }
+
+      return <blockquote>{children}</blockquote>
+    }
+  }), [isDark, callouts])
+
   return (
     <div className="min-h-screen bg-background">
       {/* Animated background */}
@@ -302,81 +381,7 @@ export function MarkdownPage({ content, title, description }: MarkdownPageProps)
             <div className="bg-card border border-border/50 rounded-xl p-8 prose dark:prose-invert max-w-none">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
-                components={{
-                  code({ node, inline, className, children, ...props }: any) {
-                    const match = /language-(\w+)/.exec(className || '')
-                    const language = match?.[1]
-
-                    // Handle Mermaid diagrams
-                    if (!inline && language === 'mermaid') {
-                      return <MemoizedMermaidDiagram chart={String(children).replace(/\n$/, '')} isDark={isDark} />
-                    }
-
-                    // Handle syntax highlighting for other languages
-                    return !inline && match ? (
-                      <SyntaxHighlighter
-                        style={isDark ? vscDarkPlus : vs}
-                        language={language}
-                        PreTag="div"
-                        className="rounded-lg"
-                        {...props}
-                      >
-                        {String(children).replace(/\n$/, '')}
-                      </SyntaxHighlighter>
-                    ) : (
-                      <code className={className} {...props}>
-                        {children}
-                      </code>
-                    )
-                  },
-                  h1({ children }) {
-                    const text = children?.toString() || ''
-                    const id = generateId(text)
-                    return <h1 id={id}>{children}</h1>
-                  },
-                  h2({ children }) {
-                    const text = children?.toString() || ''
-                    const id = generateId(text)
-                    return (
-                      <h2 id={id} className="scroll-mt-20">
-                        <a href={`#${id}`} className="group">
-                          {children}
-                          <span className="opacity-0 group-hover:opacity-100 ml-2 text-primary text-sm">#</span>
-                        </a>
-                      </h2>
-                    )
-                  },
-                  h3({ children }) {
-                    const text = children?.toString() || ''
-                    const id = generateId(text)
-                    return (
-                      <h3 id={id} className="scroll-mt-20">
-                        <a href={`#${id}`} className="group">
-                          {children}
-                          <span className="opacity-0 group-hover:opacity-100 ml-2 text-primary text-sm">#</span>
-                        </a>
-                      </h3>
-                    )
-                  },
-                  blockquote({ children }) {
-                    const content = children?.toString() || ''
-                    const calloutMatch = callouts.find(c => content.includes(c.content))
-
-                    if (calloutMatch) {
-                      return (
-                        <div className={`prose-callout ${calloutMatch.type.toLowerCase()}`}>
-                          <div className="prose-callout-title">
-                            {getCalloutIcon(calloutMatch.type)}
-                            {getCalloutLabel(calloutMatch.type)}
-                          </div>
-                          <div>{calloutMatch.content}</div>
-                        </div>
-                      )
-                    }
-
-                    return <blockquote>{children}</blockquote>
-                  }
-                }}
+                components={markdownComponents}
               >
                 {content}
               </ReactMarkdown>
