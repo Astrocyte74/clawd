@@ -217,5 +217,35 @@ export const projects: Project[] = [
         label: 'Mars'
       }
     ]
+  },
+  {
+    id: 'sls-vs-starship',
+    title: 'SLS vs Starship: Comprehensive Comparison',
+    description: 'Deep technical comparison of NASA\'s Space Launch System and SpaceX\'s Starship. Specs, costs, pros/cons, lunar and Mars mission profiles, and future outlook for human space exploration.',
+    blurb: 'Technical comparison: NASA SLS vs SpaceX Starship for Moon and Mars.',
+    category: 'guide',
+    updatedAt: new Date('2026-02-07'),
+    categoryLabel: 'Space Analysis',
+    categoryIcon: '🔬',
+    href: 'sls-vs-starship/',
+    date: 'Feb 7, 2026',
+    metadata: [
+      {
+        icon: '📊',
+        label: '15K+ words'
+      },
+      {
+        icon: '💰',
+        label: 'Cost analysis'
+      },
+      {
+        icon: '🌙',
+        label: 'Artemis'
+      },
+      {
+        icon: '🔴',
+        label: 'Mars'
+      }
+    ]
   }
 ]
