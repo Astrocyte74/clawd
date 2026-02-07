@@ -98,18 +98,26 @@ graph TD
 
 ### Starship: Fully Reusable System
 
-```
-┌─────────────────────┐
-│   Starship (Upper)  │ ← 100+ passenger capacity
-│   (6x Raptor Vac)   │
-└──────────┬──────────┘
-           │ (In-orbit refueling)
-┌──────────▼──────────┐
-│   Super Heavy       │ ← 33x Raptor engines
-│   (Booster)         │
-└─────────────────────┘
-         ↕
-    (returns & lands)
+```mermaid
+graph LR
+    subgraph Launch
+        B[Super Heavy Booster<br/>33x Raptor engines] -->|Boosts| S[Starship Upper<br/>6x Raptor Vac<br/>100+ passengers]
+    end
+
+    S -->|Separates| B
+    B -->|Returns & Lands| L[Landing Pad<br/>Reusable]
+    S -->|Orbit| O[Earth Orbit]
+
+    O -->|Optional<br/>Refueling| O
+    O -->|Trans-Lunar| Moon[Moon]
+    O -->|Trans-Mars| Mars[Mars]
+
+    style B fill:#ef4444,color:#fff
+    style S fill:#3b82f6,color:#fff
+    style L fill:#10b981,color:#fff
+    style O fill:#8b5cf6,color:#fff
+    style Moon fill:#f59e0b,color:#000
+    style Mars fill:#ec4899,color:#fff
 ```
 
 **Key Characteristics:**
