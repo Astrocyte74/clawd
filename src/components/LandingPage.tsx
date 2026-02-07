@@ -84,53 +84,46 @@ export function LandingPage() {
 
   return (
     <div className="h-full overflow-y-auto scrollbar-thin">
-      {/* Hero Section */}
-      <section className="p-6 lg:p-8 pb-4">
+      {/* Hero Section - Compressed */}
+      <section className="p-4 lg:p-6 pb-3">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-primary/10 via-purple-500/10 to-pink-500/10 p-8 lg:p-12 text-center"
+          className="relative overflow-hidden rounded-xl border border-border/50 bg-gradient-to-br from-primary/10 via-purple-500/10 to-pink-500/10 p-4 lg:p-6 text-center"
         >
-          {/* Background decorations */}
-          <div className="absolute inset-0 opacity-20 mesh-gradient"></div>
-          <div className="absolute -top-20 -right-20 h-64 w-64">
-            <div className="h-full w-full rounded-full bg-gradient-to-br from-primary/30 to-purple-500/30 blur-3xl"></div>
-          </div>
-          <div className="absolute -bottom-20 -left-20 h-64 w-64">
-            <div className="h-full w-full rounded-full bg-gradient-to-tr from-pink-500/30 to-orange-500/30 blur-3xl"></div>
-          </div>
-
           {/* Content */}
-          <div className="relative">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-purple-600 text-primary-foreground mb-6">
-              <Rocket className="h-8 w-8" />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+            <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-purple-600 text-primary-foreground">
+              <Rocket className="h-5 w-5" />
             </div>
-            <h1 className="text-4xl lg:text-5xl font-bold mb-4">
-              Stonebot Hub
-            </h1>
-            <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-              Explore AI-powered projects, guides, and experiments.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="rounded-xl" asChild>
+            <div className="text-left">
+              <h1 className="text-2xl lg:text-3xl font-bold leading-tight">
+                Stonebot Hub
+              </h1>
+              <p className="text-sm lg:text-base text-muted-foreground">
+                Explore AI-powered projects, guides, and experiments
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <Button size="default" className="rounded-lg" asChild>
                 <Link to="/projects">
-                  Explore All Projects
+                  Explore All
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="rounded-xl" onClick={scrollToLatest}>
+              <Button size="default" variant="outline" className="rounded-lg" onClick={scrollToLatest}>
                 What's New
               </Button>
             </div>
-            <p className="text-sm text-muted-foreground mt-4">
-              {projects.length} projects · Updated today
-            </p>
           </div>
+          <p className="text-xs text-muted-foreground mt-3">
+            {projects.length} projects · Updated today
+          </p>
         </motion.div>
       </section>
 
       {/* Category Filters */}
-      <section className="px-6 lg:px-8 py-4">
+      <section className="px-4 lg:px-6 py-3">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
