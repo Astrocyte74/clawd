@@ -59,6 +59,9 @@ function initializeMermaid(isDark: boolean) {
     startOnLoad: false,
     theme: isDark ? 'dark' : 'default',
     securityLevel: 'loose',
+    flowchart: {
+      htmlLabels: false,
+    },
     themeVariables: {
       darkMode: isDark,
       background: isDark ? '#0a0a0a' : '#ffffff',
@@ -108,22 +111,22 @@ function MermaidDiagram({ chart, isDark }: { chart: string; isDark: boolean }) {
               font-family: system-ui, -apple-system, sans-serif !important;
             }
 
-            /* Edge labels: background and container styling */
-            .mermaid-diagram .edgeLabel {
-              background-color: ${edgeLabelBg} !important;
-              padding: 6px 12px !important;
-            }
-
-            /* Edge label text - target all text elements inside */
-            .mermaid-diagram .edgeLabel span,
-            .mermaid-diagram .edgeLabel div,
-            .mermaid-diagram .edgeLabel p,
+            /* Edge labels (SVG text mode): readable text + padded background */
             .mermaid-diagram .edgeLabel text,
             .mermaid-diagram .edgeLabel tspan {
-              color: #ffffff !important;
               fill: #ffffff !important;
               font-size: 14px !important;
               font-weight: 600 !important;
+            }
+
+            /* Mermaid draws a background rect for edge labels in SVG-text mode */
+            .mermaid-diagram .edgeLabel .labelBkg,
+            .mermaid-diagram .edgeLabel rect {
+              fill: ${edgeLabelBg} !important;
+              stroke: none !important;
+              opacity: 1 !important;
+              rx: 6px !important;
+              ry: 6px !important;
             }
 
             /* Lines / arrows: boost contrast and thickness */
