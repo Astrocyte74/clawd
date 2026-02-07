@@ -255,6 +255,36 @@ export const projects: Project[] = [
     ]
   },
   {
+    id: 'best-marathon-shoes-2026',
+    title: 'Best Marathon Running Shoes 2026',
+    description: 'Complete guide to the best marathon shoes across 5 categories: Carbon Plate Racing, Beginners, Value, Training & Racing, and Comfort. Expert picks from Run Testers for Spring 2026 marathon season.',
+    blurb: 'Best marathon shoes 2026: Racing, training, comfort, value picks.',
+    category: 'guide',
+    updatedAt: new Date('2026-02-07'),
+    categoryLabel: 'Running Guide',
+    categoryIcon: '🏃',
+    href: '/best-marathon-shoes-2026',
+    date: 'Feb 7, 2026',
+    metadata: [
+      {
+        icon: '👟',
+        label: '25+ shoes'
+      },
+      {
+        icon: '🏆',
+        label: '5 categories'
+      },
+      {
+        icon: '💰',
+        label: 'Value picks'
+      },
+      {
+        icon: '🎯',
+        label: 'Goal times'
+      }
+    ]
+  },
+  {
     id: 'mermaid-demo',
     title: 'Mermaid Diagram Demo',
     description: 'Testing Mermaid.js integration with Markdown for beautiful, responsive diagrams.',
