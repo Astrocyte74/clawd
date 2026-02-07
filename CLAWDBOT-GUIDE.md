@@ -517,13 +517,19 @@ import YourPage from './pages/your-page'
   category: 'ai-research', // or 'home-renovation', 'recipes', 'demo'
   categoryLabel: 'AI Research',
   categoryIcon: '🤖',
-  href: 'your-page/',
+  href: '/your-page', // IMPORTANT: Absolute path, NO trailing slash!
   date: 'January 31, 2026',
   metadata: [
     { icon: '📝', label: 'Markdown powered' }
   ]
 }
 ```
+
+**⚠️ CRITICAL: href Format**
+- Must use **absolute path** starting with `/`: `'/your-page'`
+- Must **NOT** have trailing slash: `'/your-page/'` ❌
+- Must match route path in `App.tsx` exactly
+- Or use helper: `href: normalizeHref('your-page')`
 
 ### Markdown Features Supported
 
@@ -538,6 +544,47 @@ import YourPage from './pages/your-page'
 | Tables | ` \| column \| ... \| ` |
 | Blockquotes | `> quote` |
 | Lists | `- item` or `1. item` |
+| **Mermaid Diagrams** | ` ```mermaid ... ``` ` |
+
+### Mermaid Diagrams
+
+**Mermaid.js is integrated for beautiful, responsive diagrams.**
+
+**Supported diagram types:**
+- Flowcharts: `graph TD` or `graph LR`
+- Sequence diagrams: `sequenceDiagram`
+- ER diagrams: `erDiagram`
+- Gantt charts: `gantt`
+- Mindmaps: `mindmap`
+- Pie charts: `pie`
+- And more...
+
+**Example flowchart:**
+````markdown
+```mermaid
+graph TD
+    A[Start] --> B{Decision}
+    B -->|Yes| C[Success]
+    B -->|No| D[Retry]
+    D --> B
+```
+````
+
+**Example sequence diagram:**
+````markdown
+```mermaid
+sequenceDiagram
+    participant User
+    participant System
+
+    User->>System: Request
+    System-->>User: Response
+```
+````
+
+**Themes:** Diagrams automatically adapt to light/dark mode.
+
+**Demo:** See `/mermaid-demo` for live examples.
 
 ### Frontmatter Fields (Optional)
 

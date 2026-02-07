@@ -21,6 +21,12 @@ export function getBlurb(description: string): string {
   return firstLine.length > 60 ? firstLine.substring(0, 57) + '...' : firstLine + '.'
 }
 
+// Helper: Normalize href to absolute path without trailing slash
+export function normalizeHref(path: string): string {
+  const normalized = path.startsWith('/') ? path : '/' + path
+  return normalized.endsWith('/') ? normalized.slice(0, -1) : normalized
+}
+
 // Helper: Get "Updated X days ago" text
 export function getUpdatedText(dateString: string): string {
   const date = new Date(dateString)
