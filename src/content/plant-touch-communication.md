@@ -21,6 +21,36 @@ New research has uncovered a fascinating aspect of plant behavior: when plant le
 
 When plant leaves maintain physical contact, they create a communication network that functions like an early warning system:
 
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '16px'}}}%%
+graph LR
+    STRESS[Stress Event<br/>Intense light]
+    P1[Plant 1<br/>Senses stress]
+    SIG1[Electrical Signal]
+    CHEM[Hydrogen Peroxide<br/>Chemical signal]
+    P2[Plant 2<br/>Receives warning]
+    P3[Plant 3<br/>Receives warning]
+    DEFENSE[Stress Defenses<br/>Activated]
+
+    STRESS --> P1
+    P1 -->|Through touching leaves| SIG1
+    SIG1 --> CHEM
+    CHEM --> P2
+    CHEM --> P3
+    P2 --> DEFENSE
+    P3 --> DEFENSE
+
+    style STRESS fill:#ef4444,color:#fff
+    style P1 fill:#f59e0b,color:#fff
+    style P2 fill:#22c55e,color:#fff
+    style P3 fill:#22c55e,color:#fff
+    style DEFENSE fill:#3b82f6,color:#fff
+    style SIG1 fill:#8b5cf6,color:#fff
+    style CHEM fill:#8b5cf6,color:#fff
+```
+
+**The Process:**
+
 1. **Signal Transmission** — A stressed plant sends electrical signals through touching leaves
 2. **Chemical Messaging** — Hydrogen peroxide is secreted as a key signaling molecule
 3. **Network Activation** — All connected plants receive the warning and activate stress defenses
@@ -53,8 +83,28 @@ Researchers at the University of Missouri used *Arabidopsis thaliana* (a small w
 
 To understand the mechanism, researchers created a clever experiment with a **three-plant chain**:
 
-```
-Transmitter Plant → Mediator Plant → Receiver Plant
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '16px'}}}%%
+graph LR
+    TX[Transmitter Plant<br/>Artificially stressed]
+    MD1[Mediator Plant<br/>Normal ✅]
+    MD2[Mediator Plant<br/>Mutant ❌]
+    RX[Receiver Plant<br/>Tests protection]
+
+    TX -->|Signal travels| MD1
+    TX -.->|Signal blocked| MD2
+    MD1 -->|H₂O₂ transferred| RX
+    MD2 -.->|No H₂O₂| RX
+
+    RX --> PROT[Protected ✅]
+    RX -.-> NO_PROT[Vulnerable ❌]
+
+    style TX fill:#ef4444,color:#fff
+    style MD1 fill:#22c55e,color:#fff
+    style MD2 fill:#f59e0b,color:#fff
+    style RX fill:#3b82f6,color:#fff
+    style PROT fill:#10b981,color:#fff
+    style NO_PROT fill:#64748b,color:#fff
 ```
 
 **The Setup:**
@@ -63,10 +113,11 @@ Transmitter Plant → Mediator Plant → Receiver Plant
 - **Receiver:** Measures protection level
 
 **The Discovery:**
-- ✅ **Normal mediator:** Receiver gets protection
-- ❌ **Mutant mediator:** Receiver gets NO protection
+- ✅ **Normal mediator:** Receiver gets protection (H₂O₂ transferred)
+- ❌ **Mutant mediator:** Receiver gets NO protection (signal blocked)
 
-**Conclusion:** Hydrogen peroxide secretion is the crucial chemical signal that boosts resilience.
+> [!TIP]
+> **Key Insight:** Hydrogen peroxide (H₂O₂) secretion is the crucial chemical signal that boosts collective resilience. Without it, the communication network fails.
 
 ---
 
@@ -113,6 +164,38 @@ graph TD
 ### Agricultural Applications
 
 Understanding plant communication networks could revolutionize farming practices:
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '16px'}}}%%
+graph TD
+    RESEARCH[Plant Communication<br/>Research]
+    APPS[Agricultural<br/>Applications]
+
+    RESEARCH --> APPS
+
+    APPS --> SPACE[Optimized Spacing<br/>Contact density]
+    APPS --> STRESS[Stress Management<br/>Natural resistance]
+    APPS --> CHEMICAL[Reduced Chemicals<br/>Natural defenses]
+    APPS --> CLIMATE[Climate Resilience<br/>Enhanced breeding]
+
+    SPACE --> BENEFIT1[Higher yields<br/>Better survival]
+    STRESS --> BENEFIT2[Drought tolerance<br/>Heat resistance]
+    CHEMICAL --> BENEFIT3[Organic farming<br/>Lower costs]
+    CLIMATE --> BENEFIT4[Food security<br/>Sustainable agriculture]
+
+    style RESEARCH fill:#3b82f6,color:#fff
+    style APPS fill:#8b5cf6,color:#fff
+    style SPACE fill:#22c55e,color:#fff
+    style STRESS fill:#22c55e,color:#fff
+    style CHEMICAL fill:#22c55e,color:#fff
+    style CLIMATE fill:#22c55e,color:#fff
+    style BENEFIT1 fill:#10b981,color:#fff
+    style BENEFIT2 fill:#10b981,color:#fff
+    style BENEFIT3 fill:#10b981,color:#fff
+    style BENEFIT4 fill:#10b981,color:#fff
+```
+
+**Potential Benefits:**
 
 1. **Optimized Spacing** — Plant crops with appropriate contact density
 2. **Stress Management** — Leverage natural signaling for drought/heat resistance

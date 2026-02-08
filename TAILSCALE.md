@@ -63,7 +63,45 @@ Expected response:
 
 ## API Usage
 
-### Generate Image (curl)
+### ⚡ Fast Icon Generation (Recipe System)
+
+**⚡ Recommended for icons, favicons, and simple graphics!**
+
+The recipe system provides **3-4× faster generation** (6 seconds vs 22+ seconds) by using optimized prompts and sizes.
+
+| Recipe ID | Size | Steps | Avg Time | Best For |
+|-----------|------|-------|----------|----------|
+| `icon-256` | 256×256 | 4 | ~6s | Favicons, small icons |
+| `web-graphic-256` | 256×256 | 4 | ~6s | Simple web graphics |
+| `icon-384` | 384×384 | 4 | ~9s | UI icons, buttons |
+| `icon-512` | 512×512 | 5 | ~16s | High-res icons, retina |
+
+**Example: Generate a blue rocket icon**
+```bash
+curl -X POST http://YOUR_TAILSCALE_IP:8000/api/generate \
+  -H "Content-Type: application/json" \
+  -d '{
+    "prompt": "blue rocket",
+    "recipe_id": "icon-256",
+    "advanced": {}
+  }'
+```
+
+**What the recipe system does automatically:**
+- Adds flat vector style prompt: `"{subject} icon, flat vector icon, solid fill, clean thick outline, centred, no gradients, no shadow, white background"`
+- Applies negative prompt: `"photo, realistic, 3d render, gradient, shadow, messy lines, complex details"`
+- Uses optimized size and steps for fast generation
+- Returns clean icons with white backgrounds (easy to mask)
+
+**Test Results (February 7, 2026):**
+- Blue rocket (icon-256): **5.9s** ✅
+- Settings gear (web-graphic-256): **6.0s** ✅
+- Lightning bolt (icon-384): **8.6s** ✅
+- Heart (icon-512): **15.8s** ✅
+
+### Generate Image (Standard)
+
+**Use for complex scenes, illustrations, and custom styles**
 
 ```bash
 # Replace YOUR_TAILSCALE_IP with your actual IP
@@ -200,11 +238,16 @@ For additional security in production environments:
 - Restart backend after updating `backend/main.py` CORS config
 - Check browser console for specific blocked origin
 
-**Slow generation times**
-- Normal for local generation (20-30 seconds for 768×768 images)
+**"Slow generation times"**
+- **Icons/graphics**: Use recipe system for 3-4× faster generation (6-16 seconds)
+- **Standard generation**: Normal for 768×768 images (20-30 seconds)
 - First generation is slower (model loading)
 - More steps = longer generation (4 steps ≈ 20s, 7 steps ≈ 40s)
 - Check CPU/GPU usage in Activity Monitor (device: "mps" = Apple Silicon GPU)
+
+**"Which should I use - recipes or standard?"**
+- **Use recipes** (`icon-256`, `icon-384`, etc.) for: favicons, UI icons, simple graphics
+- **Use standard** generation for: complex scenes, illustrations, custom styles, large images (1024×1024+)
 
 ## Related Documentation
 
