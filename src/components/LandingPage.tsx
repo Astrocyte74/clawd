@@ -27,7 +27,14 @@ const categoryTiles: CategoryTile[] = [
 // Get 3 most recent projects
 function getRecentProjects(count: number = 3): Project[] {
   return [...projects]
-    .sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime())
+    .sort((a, b) => {
+      // Primary sort by updatedAt timestamp
+      const timeDiff = b.updatedAt.getTime() - a.updatedAt.getTime()
+      if (timeDiff !== 0) return timeDiff
+
+      // Secondary sort by date string (most recent first)
+      return b.date.localeCompare(a.date)
+    })
     .slice(0, count)
 }
 
