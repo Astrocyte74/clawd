@@ -8,6 +8,8 @@ tags: ["biology", "plants", "research", "communication"]
 
 # Plants That Touch Each Other Are More Resilient to Stress
 
+![Leaf Icon](/images/plants/leaf.png)
+
 New research has uncovered a fascinating aspect of plant behavior: when plant leaves physically touch each other, they form a biological signaling network to warn each other about upcoming stress. This cooperative communication boosts their collective resilience to environmental challenges like intense light exposure.
 
 > [!TIP]
@@ -16,6 +18,8 @@ New research has uncovered a fascinating aspect of plant behavior: when plant le
 ---
 
 ## The Science of Plant Communication
+
+![Seedling Icon](/images/plants/seedling.png)
 
 ### How It Works
 
@@ -80,6 +84,8 @@ Researchers at the University of Missouri used *Arabidopsis thaliana* (a small w
 | **Resilience** | Enhanced | Reduced | Significant protection |
 
 ### The Hydrogen Peroxide Secret
+
+![DNA Icon](/images/plants/dna.png)
 
 To understand the mechanism, researchers created a clever experiment with a **three-plant chain**:
 
@@ -161,6 +167,8 @@ graph TD
 
 ## Why This Matters
 
+![Sun Icon](/images/plants/sun.png)
+
 ### Agricultural Applications
 
 Understanding plant communication networks could revolutionize farming practices:
@@ -204,6 +212,8 @@ graph TD
 
 ### Ecological Insights
 
+![Network Icon](/images/plants/network.png)
+
 This research changes how we understand plant communities:
 
 - **Forest Ecosystems** — Trees may coordinate stress responses across canopies
@@ -211,6 +221,8 @@ This research changes how we understand plant communities:
 - **Crop Monocultures** — Traditional spacing may disrupt natural networks
 
 ### Future Research Directions
+
+![Shield Icon](/images/plants/shield.png)
 
 - **Signal Identification** — Discover additional signaling molecules
 - **Network Mapping** — Understand how far signals can travel
