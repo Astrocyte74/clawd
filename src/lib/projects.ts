@@ -367,6 +367,36 @@ export const projects: Project[] = [
     ]
   },
   {
+    id: 'openclaw-skills-analysis',
+    title: 'OpenClaw Skills Analysis',
+    description: 'Evaluating 7 potential OpenClaw skills for integration: GitHub, Gog (Google Workspace), Coding-Agent, Nano-PDF, Skill-Creator, Sonoscli, and Peekaboo. Priority recommendations and use cases for a physician-runner-AI-enthusiast.',
+    blurb: 'Analysis of 7 OpenClaw skills: Which to install, priorities, and use cases.',
+    category: 'guide',
+    updatedAt: new Date('2026-02-08'),
+    categoryLabel: 'Productivity Guide',
+    categoryIcon: '🛠️',
+    href: '/openclaw-skills-analysis',
+    date: 'Feb 8, 2026',
+    metadata: [
+      {
+        icon: '🐙',
+        label: 'GitHub'
+      },
+      {
+        icon: '📧',
+        label: 'Google Workspace'
+      },
+      {
+        icon: '🧩',
+        label: 'Skill-Creator'
+      },
+      {
+        icon: '⭐',
+        label: 'Priority rankings'
+      }
+    ]
+  },
+  {
     id: 'mermaid-demo',
     title: 'Mermaid Diagram Demo',
     description: 'Testing Mermaid.js integration with Markdown for beautiful, responsive diagrams.',
