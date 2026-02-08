@@ -13,6 +13,7 @@ import CodingFrameworksGuidePage from './pages/coding-frameworks-guide'
 import SpaceExplorationGuidePage from './pages/space-exploration-guide'
 import SlsVsStarshipPage from './pages/sls-vs-starship'
 import BestMarathonShoes2026Page from './pages/best-marathon-shoes-2026'
+import HokaMach7ReviewPage from './pages/hoka-mach-7-review'
 import MermaidDemoPage from './pages/mermaid-demo'
 import { getStoredTheme, initializeColorMode, type ThemeKey, type ColorMode } from './lib/themes'
 
@@ -150,6 +151,7 @@ function AppRouter({ activeNav, setActiveNav, currentTheme, setCurrentTheme, cur
         <Route path="/space-exploration-guide" element={<SpaceExplorationGuidePage />} />
         <Route path="/sls-vs-starship" element={<SlsVsStarshipPage />} />
         <Route path="/best-marathon-shoes-2026" element={<BestMarathonShoes2026Page />} />
+        <Route path="/hoka-mach-7-review" element={<HokaMach7ReviewPage />} />
         <Route path="/mermaid-demo" element={<MermaidDemoPage />} />
       </Routes>
     )
