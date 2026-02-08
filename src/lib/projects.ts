@@ -311,6 +311,32 @@ export const projects: Project[] = [
     ]
   },
   {
+    id: 'plant-touch-communication',
+    title: 'Plants That Touch Are More Resilient',
+    description: 'Fascinating research on plant communication through physical contact. When leaves touch, plants form biological signaling networks that warn each other about stress, boosting collective resilience by up to 50%.',
+    blurb: 'Plant communication: Touching leaves create stress-warning networks.',
+    category: 'ai-research',
+    updatedAt: new Date('2026-02-07'),
+    categoryLabel: 'Plant Biology',
+    categoryIcon: '🌱',
+    href: '/plant-touch-communication',
+    date: 'Feb 7, 2026',
+    metadata: [
+      {
+        icon: '🔬',
+        label: 'Univ. of Missouri'
+      },
+      {
+        icon: '⚡',
+        label: 'Electrical signals'
+      },
+      {
+        icon: '🧪',
+        label: 'Hydrogen peroxide'
+      }
+    ]
+  },
+  {
     id: 'mermaid-demo',
     title: 'Mermaid Diagram Demo',
     description: 'Testing Mermaid.js integration with Markdown for beautiful, responsive diagrams.',
