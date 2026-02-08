@@ -52,18 +52,26 @@ function sortProjects(projectList: Project[], sortOption: SortOption): Project[]
       return sorted.sort((a, b) => {
         const timeDiff = b.updatedAt.getTime() - a.updatedAt.getTime()
         if (timeDiff !== 0) return timeDiff
-        return b.date.localeCompare(a.date)
+        const dateDiff = b.date.localeCompare(a.date)
+        if (dateDiff !== 0) return dateDiff
+        return a.title.localeCompare(b.title)
       })
     case 'oldest':
       return sorted.sort((a, b) => {
         const timeDiff = a.updatedAt.getTime() - b.updatedAt.getTime()
         if (timeDiff !== 0) return timeDiff
-        return a.date.localeCompare(b.date)
+        const dateDiff = a.date.localeCompare(b.date)
+        if (dateDiff !== 0) return dateDiff
+        return a.title.localeCompare(b.title)
       })
     case 'alphabetical':
       return sorted.sort((a, b) => a.title.localeCompare(b.title))
     case 'category':
-      return sorted.sort((a, b) => a.categoryLabel.localeCompare(b.categoryLabel))
+      return sorted.sort((a, b) => {
+        const catDiff = a.categoryLabel.localeCompare(b.categoryLabel)
+        if (catDiff !== 0) return catDiff
+        return a.title.localeCompare(b.title)
+      })
     default:
       return sorted
   }
