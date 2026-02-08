@@ -285,6 +285,32 @@ export const projects: Project[] = [
     ]
   },
   {
+    id: 'hoka-mach-7-review',
+    title: 'Hoka Mach 7 Review',
+    description: 'First run review of the Hoka Mach 7 vs Mach 6. Minor update with improved outsole grip and cosmetic refresh. Same super critical EVA midsole, 5mm drop, 237g weight. Release: March 5, 2026 at $145.',
+    blurb: 'Hoka Mach 7 first run review: Improved grip, same great ride.',
+    category: 'guide',
+    updatedAt: new Date('2026-02-07'),
+    categoryLabel: 'Shoe Review',
+    categoryIcon: '👟',
+    href: '/hoka-mach-7-review',
+    date: 'Feb 7, 2026',
+    metadata: [
+      {
+        icon: '🆕',
+        label: 'March 2026'
+      },
+      {
+        icon: '💵',
+        label: '$145'
+      },
+      {
+        icon: '⚖️',
+        label: '237g'
+      }
+    ]
+  },
+  {
     id: 'mermaid-demo',
     title: 'Mermaid Diagram Demo',
     description: 'Testing Mermaid.js integration with Markdown for beautiful, responsive diagrams.',
