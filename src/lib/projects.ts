@@ -337,6 +337,36 @@ export const projects: Project[] = [
     ]
   },
   {
+    id: 'ancient-advanced-knowledge',
+    title: 'Ancient Civilizations Had Advanced Knowledge',
+    description: 'From precision stonework to acoustic engineering, ancient civilizations possessed sophisticated knowledge that modern science is only now fully appreciating. Explore the spiral of knowledge rediscovery.',
+    blurb: 'Ancient civilizations had advanced knowledge we\'re just rediscovering.',
+    category: 'ai-research',
+    updatedAt: new Date('2026-02-08'),
+    categoryLabel: 'Archaeology',
+    categoryIcon: '🏺',
+    href: '/ancient-advanced-knowledge',
+    date: 'Feb 8, 2026',
+    metadata: [
+      {
+        icon: '🔬',
+        label: 'Engineering'
+      },
+      {
+        icon: '🔊',
+        label: 'Acoustics'
+      },
+      {
+        icon: '🌟',
+        label: 'Astronomy'
+      },
+      {
+        icon: '📜',
+        label: 'Lost knowledge'
+      }
+    ]
+  },
+  {
     id: 'mermaid-demo',
     title: 'Mermaid Diagram Demo',
     description: 'Testing Mermaid.js integration with Markdown for beautiful, responsive diagrams.',
