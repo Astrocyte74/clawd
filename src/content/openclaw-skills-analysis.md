@@ -17,15 +17,15 @@ I'm considering installing several OpenClaw skills to enhance my automation capa
 
 ## Quick Overview
 
-| Skill | Usefulness | Priority | Complexity |
-|-------|-----------|----------|------------|
-| **GitHub** | ⭐⭐⭐⭐⭐ | Critical | Low |
-| **Gog (Google Workspace)** | ⭐⭐⭐⭐ | High | Low |
-| **Coding-Agent** | ⭐⭐⭐ | Medium | High |
-| **Nano-PDF** | ⭐⭐⭐ | Medium | Low |
-| **Skill-Creator** | ⭐⭐⭐⭐ | High | Medium |
-| **Sonoscli** | ⭐ | Low | Low |
-| **Peekaboo** | ⭐⭐ | Low | Medium |
+| Skill | Use Case | Install? | Usefulness |
+|-------|----------|----------|------------|
+| **🐙 GitHub** | GitHub automation from chat | ✅ Yes, very useful | ⭐⭐⭐⭐⭐ |
+| **📧 Gog** | Google Workspace integration | ✅ Yes, if you use G Suite | ⭐⭐⭐⭐ |
+| **🤖 Coding-Agent** | Control coding agents remotely | 🤔 Maybe (you already use Claude Code) | ⭐⭐⭐ |
+| **📄 Nano-PDF** | Natural language PDF editing | ✅ Yes, handy tool | ⭐⭐⭐ |
+| **🧩 Skill-Creator** | Build custom skills | 💡 If you want to make your own | ⭐⭐⭐⭐ |
+| **🔊 Sonoscli** | Control Sonos speakers | ⚠️ If you have Sonos | ⭐ |
+| **👀 Peekaboo** | Automate macOS UI | 🔧 For automation tasks | ⭐⭐ |
 
 ---
 
