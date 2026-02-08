@@ -1,12 +1,13 @@
 import { useState, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
-import { Rocket, Home, Brain, Beaker, BookOpen, Sparkles } from "lucide-react"
+import { Rocket, Home, Brain, Beaker, BookOpen, Sparkles, ArrowUpDown } from "lucide-react"
 import { Button } from "./ui/button"
 import { ProjectCard } from "./ProjectCardNew"
 import { projects, type Project } from "@/lib/projects"
 
 type FilterCategory = 'all' | 'home-renovation' | 'ai-research' | 'recipes' | 'demo' | 'guide'
+type SortOption = 'newest' | 'oldest' | 'alphabetical' | 'category'
 
 interface CategoryTile {
   id: FilterCategory
@@ -33,13 +34,44 @@ function getRecentProjects(count: number = 3): Project[] {
       if (timeDiff !== 0) return timeDiff
 
       // Secondary sort by date string (most recent first)
-      return b.date.localeCompare(a.date)
+      const dateDiff = b.date.localeCompare(a.date)
+      if (dateDiff !== 0) return dateDiff
+
+      // Tertiary sort by title (alphabetical) for consistency
+      return a.title.localeCompare(b.title)
     })
     .slice(0, count)
 }
 
+// Sort projects based on selected option
+function sortProjects(projectList: Project[], sortOption: SortOption): Project[] {
+  const sorted = [...projectList]
+
+  switch (sortOption) {
+    case 'newest':
+      return sorted.sort((a, b) => {
+        const timeDiff = b.updatedAt.getTime() - a.updatedAt.getTime()
+        if (timeDiff !== 0) return timeDiff
+        return b.date.localeCompare(a.date)
+      })
+    case 'oldest':
+      return sorted.sort((a, b) => {
+        const timeDiff = a.updatedAt.getTime() - b.updatedAt.getTime()
+        if (timeDiff !== 0) return timeDiff
+        return a.date.localeCompare(b.date)
+      })
+    case 'alphabetical':
+      return sorted.sort((a, b) => a.title.localeCompare(b.title))
+    case 'category':
+      return sorted.sort((a, b) => a.categoryLabel.localeCompare(b.categoryLabel))
+    default:
+      return sorted
+  }
+}
+
 export function LandingPage() {
   const [activeFilter, setActiveFilter] = useState<FilterCategory>('all')
+  const [sortBy, setSortBy] = useState<SortOption>('newest')
 
   // Sync URL with filter
   useEffect(() => {
@@ -66,11 +98,11 @@ export function LandingPage() {
     window.history.pushState({}, '', url.toString())
   }
 
-  // Filter projects
+  // Filter and sort projects
   const filteredProjects = useMemo(() => {
-    if (activeFilter === 'all') return projects
-    return projects.filter(p => p.category === activeFilter)
-  }, [activeFilter])
+    const filtered = activeFilter === 'all' ? projects : projects.filter(p => p.category === activeFilter)
+    return sortProjects(filtered, sortBy)
+  }, [activeFilter, sortBy])
 
   // Get "What's New" (max 3, auto-collapses if < 3)
   const recentProjects = useMemo(() => getRecentProjects(3), [])
@@ -192,9 +224,26 @@ export function LandingPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4, delay: 0.3 }}
         >
-          <h2 className="text-lg font-semibold mb-4">
-            {activeFilter === 'all' ? 'All Projects' : `${categoryTiles.find(t => t.id === activeFilter)?.label || 'Projects'} (${filteredProjects.length})`}
-          </h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold">
+              {activeFilter === 'all' ? 'All Projects' : `${categoryTiles.find(t => t.id === activeFilter)?.label || 'Projects'} (${filteredProjects.length})`}
+            </h2>
+
+            {/* Sort Controls */}
+            <div className="flex items-center gap-2">
+              <ArrowUpDown className="h-4 w-4 text-muted-foreground" />
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as SortOption)}
+                className="text-sm bg-background border border-border rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+                <option value="alphabetical">Alphabetical</option>
+                <option value="category">By Category</option>
+              </select>
+            </div>
+          </div>
 
           <AnimatePresence mode="wait">
             <motion.div
