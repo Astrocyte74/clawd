@@ -402,7 +402,7 @@ export const projects: Project[] = [
     description: 'Testing Mermaid.js integration with Markdown for beautiful, responsive diagrams.',
     blurb: 'Test page for Mermaid diagram rendering in Markdown.',
     category: 'demo',
-    updatedAt: new Date('2026-02-07T19:30:00'),
+    updatedAt: new Date('2026-02-07T12:00:00'),
     categoryLabel: 'Demo',
     categoryIcon: '🎨',
     href: '/mermaid-demo',
