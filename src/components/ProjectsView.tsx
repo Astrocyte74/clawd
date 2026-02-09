@@ -9,12 +9,20 @@ interface ProjectsViewProps {
 
 export function ProjectsView({ activeNav }: ProjectsViewProps) {
   // Filter projects based on active nav
-  const filteredProjects = projects.filter((project) => {
-    if (activeNav === "projects") return true
-    if (activeNav === "home-renovation") return project.category === "home-renovation"
-    if (activeNav === "ai-research") return project.category === "ai-research"
-    return true
-  })
+  const filteredProjects = [...projects]
+    .filter((project) => {
+      if (activeNav === "projects") return true
+      if (activeNav === "home-renovation") return project.category === "home-renovation"
+      if (activeNav === "ai-research") return project.category === "ai-research"
+      return true
+    })
+    .sort((a, b) => {
+      // Sort by updatedAt (newest first)
+      const timeDiff = b.updatedAt.getTime() - a.updatedAt.getTime()
+      if (timeDiff !== 0) return timeDiff
+      // Secondary sort by date string
+      return b.date.localeCompare(a.date)
+    })
 
   const getCategoryTitle = () => {
     switch (activeNav) {
