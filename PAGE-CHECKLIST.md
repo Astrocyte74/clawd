@@ -104,6 +104,79 @@ Use this checklist when creating new pages to avoid common mistakes and ensure c
 
 ---
 
+## 🤖 Automated Verification (New!)
+
+### Run Pre-Commit Checks
+**Before pushing, run these automated checks:**
+
+#### 1. Check Routes (Prevents 404 errors)
+```bash
+./scripts/check-routes.sh
+```
+**What it does:** Verifies all page files have imports and routes in App.tsx
+**Expected output:** ✅ All routes configured correctly!
+**If errors:** Shows exactly which imports/routes are missing
+
+#### 2. TypeScript Build Check (Prevents deploy failures)
+```bash
+npm run build 2>&1 | grep -E "error TS" || echo "✅ TypeScript OK"
+```
+**Expected output:** ✅ TypeScript OK (or no output)
+**If errors:** Shows TypeScript errors to fix before pushing
+
+#### 3. Check Page Pattern (Prevents import errors)
+```bash
+grep -r "meta={metadata}" src/pages/ && echo "❌ Found incorrect prop usage" || echo "✅ No meta prop errors"
+```
+**Expected output:** ✅ No meta prop errors
+**If errors:** Shows which files use wrong prop pattern
+
+#### 4. Verify Import Suffix (Prevents module errors)
+```bash
+grep -r "from.*content/.*\.md\"[^?]" src/pages/ && echo "❌ Missing ?raw suffix" || echo "✅ All imports correct"
+```
+**Expected output:** ✅ All imports correct
+**If errors:** Shows files missing `?raw` suffix
+
+### Pre-Commit Hook (Automatic)
+**Install this pre-commit hook to catch errors automatically:**
+
+```bash
+# Create pre-commit hook
+cat > .git/hooks/pre-commit << 'EOF'
+#!/bin/bash
+echo "🔍 Running pre-commit checks..."
+
+# Check routes
+if [ -f "scripts/check-routes.sh" ]; then
+    if ! ./scripts/check-routes.sh > /dev/null 2>&1; then
+        echo "❌ Route check failed! Run: ./scripts/check-routes.sh"
+        exit 1
+    fi
+fi
+
+# Check TypeScript
+if npm run build 2>&1 | grep -q "error TS"; then
+    echo "❌ TypeScript errors found! Run: npm run build"
+    exit 1
+fi
+
+echo "✅ All checks passed!"
+EOF
+
+chmod +x .git/hooks/pre-commit
+```
+
+### Auto-Detect Missing Routes (After Page Creation)
+**Run this after creating a new page to auto-detect what's missing:**
+
+```bash
+# Check if new pages need routes
+./scripts/check-routes.sh
+```
+
+---
+
 ## 🚀 Deployment Checklist
 
 ### 7. Test Locally (if possible)

@@ -421,5 +421,35 @@ export const projects: Project[] = [
         label: 'Interactive'
       }
     ]
+  },
+  {
+    id: 'folder-monitoring-image-generator',
+    title: 'Automated Folder Monitoring & AI Image Generation',
+    description: 'Monitor any folder on your Mac for text files and automatically generate AI images using Z-Image API. Two production-ready scripts with fswatch integration, Tailscale support, and automatic transparency via recipe system.',
+    blurb: 'Drop text files → Get AI images automatically. Folder monitoring + Z-Image integration.',
+    category: 'guide',
+    updatedAt: new Date('2026-02-08'),
+    categoryLabel: 'Automation Guide',
+    categoryIcon: '📁',
+    href: '/folder-monitoring-image-generator',
+    date: 'Feb 8, 2026',
+    metadata: [
+      {
+        icon: '📁',
+        label: 'Folder watcher'
+      },
+      {
+        icon: '🎨',
+        label: 'AI image generation'
+      },
+      {
+        icon: '⚡',
+        label: '6-second generation'
+      },
+      {
+        icon: '🔐',
+        label: 'Tailscale secure'
+      }
+    ]
   }
 ]
