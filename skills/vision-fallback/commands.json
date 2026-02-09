@@ -1,0 +1,9 @@
+{
+  "shortcuts": [
+    {
+      "command": "/vision",
+      "description": "Check if current model supports vision and switch to Kimi-OR if needed",
+      "emoji": "👁️"
+    }
+  ]
+}

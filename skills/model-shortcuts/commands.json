@@ -1,0 +1,19 @@
+{
+  "shortcuts": [
+    {
+      "command": "/kimi-o",
+      "description": "Switch to Kimi Ollama (local)",
+      "emoji": "☁️"
+    },
+    {
+      "command": "/kimi-or",
+      "description": "Switch to Kimi OpenRouter (cloud)",
+      "emoji": "🌐"
+    },
+    {
+      "command": "/glm",
+      "description": "Switch to GLM-4.7",
+      "emoji": "⚡"
+    }
+  ]
+}
