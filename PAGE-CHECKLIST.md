@@ -88,7 +88,7 @@ Use this checklist when creating new pages to avoid common mistakes and ensure c
     description: 'Full description (2-3 sentences)',
     blurb: 'One-line description for cards',
     category: 'guide', // or appropriate category
-    updatedAt: new Date('YYYY-MM-DD'),
+    updatedAt: new Date(), // ← CRITICAL: Use current datetime for correct sorting!
     categoryLabel: 'Display Name',
     categoryIcon: '🎯',
     href: '/{slug}',
@@ -99,6 +99,7 @@ Use this checklist when creating new pages to avoid common mistakes and ensure c
     ]
   }
   ```
+- [ ] ⚠️ **IMPORTANT:** Always use `new Date()` (current datetime) - never hardcode dates like `new Date('2026-02-08')`
 - [ ] Choose appropriate emoji icon
 - [ ] Add 2-4 metadata items with icons
 
@@ -108,6 +109,14 @@ Use this checklist when creating new pages to avoid common mistakes and ensure c
 
 ### Run Pre-Commit Checks
 **Before pushing, run these automated checks:**
+
+#### 0. Check Timestamps (Prevents sorting issues)
+```bash
+./scripts/fix-timestamps.sh
+```
+**What it does:** Checks for date-only timestamps that cause incorrect sorting
+**If errors found:** Run `node scripts/fix-timestamps.js` to auto-fix
+**Why:** Date-only timestamps (like `new Date('2026-02-08')`) cause items created on the same day to sort alphabetically instead of chronologically
 
 #### 1. Check Routes (Prevents 404 errors)
 ```bash
@@ -146,6 +155,14 @@ grep -r "from.*content/.*\.md\"[^?]" src/pages/ && echo "❌ Missing ?raw suffix
 cat > .git/hooks/pre-commit << 'EOF'
 #!/bin/bash
 echo "🔍 Running pre-commit checks..."
+
+# Check timestamps
+if [ -f "scripts/fix-timestamps.sh" ]; then
+    if ./scripts/fix-timestamps.sh 2>&1 | grep -q "Found.*entries with date-only"; then
+        echo "❌ Date-only timestamps found! Run: node scripts/fix-timestamps.js"
+        exit 1
+    fi
+fi
 
 # Check routes
 if [ -f "scripts/check-routes.sh" ]; then
