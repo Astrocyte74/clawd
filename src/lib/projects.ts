@@ -483,4 +483,35 @@ export const projects: Project[] = [
       }
     ]
   }
+,
+  {
+    id: 'alibaba-zvec-vector-database',
+    title: 'Alibaba Zvec: SQLite-Like Vector Database for Edge RAG',
+    description: 'Analysis of Alibaba\'s Zvec embedded vector database - whether it could enhance OpenClaw\'s local memory system and provide better on-device RAG capabilities for edge applications. Compares Zvec to OpenClaw\'s current SQLite-based memory architecture.',
+    blurb: 'Analysis of Alibaba\'s Zvec embedded vector database for edge AI',
+    category: 'ai-research',
+    updatedAt: new Date(),
+    categoryLabel: 'AI Research',
+    categoryIcon: '🌌',
+    href: '/alibaba-zvec-vector-database',
+    date: 'Feb 10, 2026',
+    metadata: [
+      {
+        icon: '🗄️',
+        label: 'Vector database'
+      },
+      {
+        icon: '⚡',
+        label: '8,000+ QPS'
+      },
+      {
+        icon: '📱',
+        label: 'Edge AI'
+      },
+      {
+        icon: '🔍',
+        label: 'RAG analysis'
+      }
+    ]
+  }
 ]
