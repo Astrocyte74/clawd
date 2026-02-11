@@ -18,6 +18,7 @@ import PlantTouchCommunicationPage from './pages/plant-touch-communication'
 import AncientAdvancedKnowledgePage from './pages/ancient-advanced-knowledge'
 import OpenClawSkillsAnalysisPage from './pages/openclaw-skills-analysis'
 import FolderMonitoringImageGeneratorPage from './pages/folder-monitoring-image-generator'
+import OpenclawPlaywrightCliPage from './pages/openclaw-playwright-cli'
 import MermaidDemoPage from './pages/mermaid-demo'
 import { getStoredTheme, initializeColorMode, type ThemeKey, type ColorMode } from './lib/themes'
 
@@ -161,6 +162,7 @@ function AppRouter({ activeNav, setActiveNav, currentTheme, setCurrentTheme, cur
         <Route path="/openclaw-skills-analysis" element={<OpenClawSkillsAnalysisPage />} />
         <Route path="/folder-monitoring-image-generator" element={<FolderMonitoringImageGeneratorPage />} />
         <Route path="/mermaid-demo" element={<MermaidDemoPage />} />
+        <Route path="/openclaw-playwright-cli" element={<OpenclawPlaywrightCliPage />} />
       </Routes>
     )
 }

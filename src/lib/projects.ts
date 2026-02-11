@@ -452,4 +452,35 @@ export const projects: Project[] = [
       }
     ]
   }
+,
+  {
+    id: 'openclaw-playwright-cli',
+    title: 'OpenClaw Playwright CLI: Giving Text Models Vision',
+    description: 'How OpenClaw\'s Playwright CLI enables text-only models like GLM 4.7 to interact with web pages through structured accessibility snapshots, without native vision capabilities. Explores whether this provides genuinely new capabilities or duplicates existing tools.',
+    blurb: 'Enables text-only models to interact with web browsers via ARIA snapshots',
+    category: 'ai-research',
+    updatedAt: new Date(),
+    categoryLabel: 'AI Research',
+    categoryIcon: '🌌',
+    href: '/openclaw-playwright-cli',
+    date: 'Feb 10, 2026',
+    metadata: [
+      {
+        icon: '🎭',
+        label: 'Playwright CLI'
+      },
+      {
+        icon: '👁️',
+        label: 'Text-based vision'
+      },
+      {
+        icon: '🌐',
+        label: 'Web automation'
+      },
+      {
+        icon: '⚡',
+        label: 'No vision model'
+      }
+    ]
+  }
 ]
