@@ -513,5 +513,35 @@ export const projects: Project[] = [
         label: 'RAG analysis'
       }
     ]
+  },
+  {
+    id: 'nas-hard-drive-research',
+    title: 'NAS Hard Drive Research - Zettlab D6 Ultra',
+    description: 'Comparison of 6-bay NAS hard drives for Plex + AI workloads. Price per TB analysis, RAID capacity calculator (RAID 5/6/10), and recommendations for WD Red Pro 24TB vs Toshiba N300 Pro 20TB vs Seagate IronWolf Pro.',
+    blurb: 'NAS drive comparison: WD Red Pro vs Toshiba N300 vs Seagate IronWolf',
+    category: 'home-renovation',
+    updatedAt: new Date('2026-02-19'),
+    categoryLabel: 'Home Improvement',
+    categoryIcon: '🏠',
+    href: '/nas-hard-drive-research',
+    date: 'Feb 19, 2026',
+    metadata: [
+      {
+        icon: '💾',
+        label: '6-bay NAS'
+      },
+      {
+        icon: '📊',
+        label: 'RAID calculator'
+      },
+      {
+        icon: '💰',
+        label: '$25-31/TB'
+      },
+      {
+        icon: '🎬',
+        label: 'Plex + AI'
+      }
+    ]
   }
 ]
