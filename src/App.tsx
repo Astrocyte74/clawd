@@ -22,6 +22,7 @@ import OpenclawPlaywrightCliPage from './pages/openclaw-playwright-cli'
 import AlibabaZvecVectorDatabasePage from './pages/alibaba-zvec-vector-database'
 import InterstellarTravelImpossiblePage from './pages/interstellar-travel-impossible'
 import NasHardDriveResearchPage from './pages/nas-hard-drive-research'
+import ZettlabD6UltraSetupGuidePage from './pages/zettlab-d6-ultra-setup-guide'
 import MermaidDemoPage from './pages/mermaid-demo'
 import { getStoredTheme, initializeColorMode, type ThemeKey, type ColorMode } from './lib/themes'
 
@@ -169,6 +170,7 @@ function AppRouter({ activeNav, setActiveNav, currentTheme, setCurrentTheme, cur
         <Route path="/alibaba-zvec-vector-database" element={<AlibabaZvecVectorDatabasePage />} />
         <Route path="/interstellar-travel-impossible" element={<InterstellarTravelImpossiblePage />} />
         <Route path="/nas-hard-drive-research" element={<NasHardDriveResearchPage />} />
+        <Route path="/zettlab-d6-ultra-setup-guide" element={<ZettlabD6UltraSetupGuidePage />} />
       </Routes>
     )
 }

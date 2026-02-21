@@ -543,5 +543,35 @@ export const projects: Project[] = [
         label: 'Plex + AI'
       }
     ]
+  },
+  {
+    id: 'zettlab-d6-ultra-setup-guide',
+    title: 'Zettlab D6 Ultra Setup Guide',
+    description: 'Complete walkthrough for setting up the Zettlab D6 Ultra NAS with RAID 6, 96GB RAM, and 80TB storage. Covers hardware installation, ZettOS configuration, network setup, Plex, Docker, and AI features.',
+    blurb: 'Complete setup guide: 96GB RAM, RAID 6, 72TB usable, Plex + AI',
+    category: 'guide',
+    updatedAt: new Date('2026-02-20'),
+    categoryLabel: 'Setup Guide',
+    categoryIcon: '🛠️',
+    href: '/zettlab-d6-ultra-setup-guide',
+    date: 'Feb 20, 2026',
+    metadata: [
+      {
+        icon: '💾',
+        label: '72.7 TiB'
+      },
+      {
+        icon: '🧠',
+        label: '96GB RAM'
+      },
+      {
+        icon: '🔒',
+        label: 'RAID 6'
+      },
+      {
+        icon: '🎬',
+        label: 'Plex + AI'
+      }
+    ]
   }
 ]
